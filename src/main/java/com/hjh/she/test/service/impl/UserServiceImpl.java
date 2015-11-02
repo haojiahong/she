@@ -3,7 +3,10 @@ package com.hjh.she.test.service.impl;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
+import com.hjh.she.basedao.JPAUtil;
+import com.hjh.she.model.User;
 import com.hjh.she.test.service.UserServcie;
+import com.hjh.she.util.CommonUtil;
 
 @Component("userService")
 public class UserServiceImpl implements UserServcie {
@@ -12,8 +15,16 @@ public class UserServiceImpl implements UserServcie {
 
 	@Override
 	public void test() {
-//		System.out.println("ceshi spring");
+		// System.out.println("ceshi spring");
 		logger.info("aaaa");
 	}
 
+	@Override
+	public void testHibernate() {
+		User user = new User();
+		user.setUserId(CommonUtil.genUUID());
+		user.setUserName("haotest");
+		user.setUserDescription("aaa啊啊啊");
+		JPAUtil.create(user);
+	}
 }
