@@ -12,6 +12,38 @@ http://www.springframework.org/schema/context/spring-context.xsd
 	<context:property-placeholder location="classpath:config.properties" />
 
 	<!-- 自动扫描dao和service包(自动注入) -->
-	<context:component-scan base-package="com.hjh.she.test.service" />
+	<context:component-scan base-package="com.hjh.she" />
+
+	<!--获取Spring容器管理对象的环境类 -->
+	<bean id="myApplicationContext" class="com.hjh.she.basedao.MyApplicationContextUtil"
+		init-method="handle"></bean>
+
+	<!--应用系统配置 -->
+	<bean id="appConfig" class="com.hjh.she.basedao.AppConfig">
+		<property name="appExtProp">
+			<ref bean="appExtConfig" />
+		</property>
+	</bean>
+
+	<!-- 项目的扩展参数Map -->
+	<bean id="appExtConfig" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<!--搜索中心路径 -->
+				<entry key="searchCenterPath">
+					<value>D:/hrms/indexfiles</value>
+				</entry>
+				<!-- 上传文件临时存放路径 -->
+				<entry key="fileTempPath">
+					<value>D:/hrms/temp/</value>
+				</entry>
+				<!--附件管理 -->
+				<entry key="accessoryFilePath">
+					<value>D:/hrms/accessory/</value>
+				</entry>
+			</map>
+		</constructor-arg>
+	</bean>
+
 
 </beans>
