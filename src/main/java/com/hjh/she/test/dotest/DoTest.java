@@ -24,7 +24,7 @@ public class DoTest {
 	@Test
 	public void testHibernate() {
 		ApplicationContext ac = new ClassPathXmlApplicationContext(
-				new String[] { "spring.xml", "spring-hibernate.xml" });
+				new String[] { "spring.xml", "spring-hibernate.xml" });	
 		UserServcie userServcie = (UserServcie) ac.getBean("userService");
 		userServcie.testHibernate();
 
