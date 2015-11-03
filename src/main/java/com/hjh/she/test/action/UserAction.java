@@ -1,27 +1,28 @@
 package com.hjh.she.test.action;
 
-import org.apache.log4j.Logger;
-//import org.apache.struts2.ServletActionContext;
-//import org.apache.struts2.convention.annotation.Action;
-//import org.apache.struts2.convention.annotation.Namespace;
-//import org.apache.struts2.convention.annotation.ParentPackage;
-import org.springframework.context.ApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.subject.Subject;
+import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Namespace;
+import org.apache.struts2.convention.annotation.ParentPackage;
+import org.apache.struts2.convention.annotation.Result;
 
-import com.hjh.she.test.service.UserServcie;
+import com.opensymphony.xwork2.ActionSupport;
 
-//@ParentPackage("basePackage")
-//@Namespace("/")
-//@Action(value = "userAction")
-public class UserAction {
-	private static final Logger logger = Logger.getLogger(UserAction.class);
+@ParentPackage("basePackage")
+@Namespace("/")
+@Action(value = "userAction", results = { @Result(name = "toList", location = "/list.jsp"),
+		@Result(name = "success", location = "/ok.jsp") })
+public class UserAction extends ActionSupport {
 
-	public void test() {
-		logger.info("进入action");
-//		ApplicationContext ac = WebApplicationContextUtils.getWebApplicationContext(ServletActionContext
-//				.getServletContext());
-//		UserServcie userServcie = (UserServcie) ac.getBean("userService");
-//		userServcie.test();
+	private static final long serialVersionUID = 1L;
 
+	@RequiresPermissions({ "p1" })
+	public String execute() {
+		Subject currentUser = SecurityUtils.getSubject();
+		System.out.println("now user====" + currentUser.getPrincipal() + " ,role==" + currentUser.hasRole("role1")
+				+ " ,p==" + currentUser.isPermitted("p1"));
+		return "toList";
 	}
 }
