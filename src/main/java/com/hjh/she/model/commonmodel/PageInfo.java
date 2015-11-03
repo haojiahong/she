@@ -2,8 +2,6 @@ package com.hjh.she.model.commonmodel;
 
 import java.io.Serializable;
 
-import org.apache.struts2.json.annotations.JSON;
-
 public class PageInfo implements Serializable {
 
 	private Integer startIndex;
@@ -62,7 +60,7 @@ public class PageInfo implements Serializable {
 		return buffer.toString();
 	}
 
-	@JSON(serialize = false)
+	
 	public QueryParamList getPageParams() {
 		return pageParams;
 	}
@@ -71,7 +69,7 @@ public class PageInfo implements Serializable {
 		this.pageParams = pageParams;
 	}
 
-	@JSON(serialize = false)
+	
 	public String getPageHql() {
 		return pageHql;
 	}
