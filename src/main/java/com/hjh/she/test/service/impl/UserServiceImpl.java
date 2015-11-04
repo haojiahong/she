@@ -25,8 +25,8 @@ public class UserServiceImpl implements UserServcie {
 	public void testHibernate() {
 		User user = new User();
 		user.setUserId(CommonUtil.genUUID());
-		user.setAccount("haotest");
-		user.setCreated(new Timestamp(System.currentTimeMillis()));
+		user.setAccount("haotest2");
+		// user.setCreated(new Timestamp(System.currentTimeMillis()));
 		// user.setUserDescription("aaa啊啊啊");
 		JPAUtil.create(user);
 	}

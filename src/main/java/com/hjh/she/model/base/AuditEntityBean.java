@@ -4,11 +4,9 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
-import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-@EntityListeners({ AuditEntityListener.class })
 public class AuditEntityBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
