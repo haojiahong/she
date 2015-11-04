@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.hjh.she.model.commonmodel.SortParam;
-import com.hjh.she.model.commonmodel.SortParamList;
+import com.hjh.she.model.base.SortParam;
+import com.hjh.she.model.base.SortParamList;
 
 public class JpqlUtil {
 	public static String deleteOuterOrderBy(String jpql) throws Exception {

@@ -16,10 +16,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hjh.she.model.commonmodel.PageInfo;
-import com.hjh.she.model.commonmodel.QueryParam;
-import com.hjh.she.model.commonmodel.QueryParamList;
-import com.hjh.she.model.commonmodel.SortParamList;
+import com.hjh.she.model.base.PageInfo;
+import com.hjh.she.model.base.QueryParam;
+import com.hjh.she.model.base.QueryParamList;
+import com.hjh.she.model.base.SortParamList;
 
 @Service("baseDao")
 @Transactional(readOnly = false, propagation = Propagation.REQUIRED)

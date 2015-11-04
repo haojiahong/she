@@ -25,4 +25,12 @@ public class UserAction extends ActionSupport {
 				+ " ,p==" + currentUser.isPermitted("p1"));
 		return "toList";
 	}
+
+	@RequiresPermissions({ "p3" })
+	public String testRole3() {
+		Subject currentUser = SecurityUtils.getSubject();
+		System.out.println("now user====" + currentUser.getPrincipal() + " ,role==" + currentUser.hasRole("role1")
+				+ " ,p==" + currentUser.isPermitted("p3"));
+		return "toList";
+	}
 }

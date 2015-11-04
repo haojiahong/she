@@ -3,9 +3,9 @@ package com.hjh.she.basedao;
 import java.io.Serializable;
 import java.util.List;
 
-import com.hjh.she.model.commonmodel.PageInfo;
-import com.hjh.she.model.commonmodel.QueryParamList;
-import com.hjh.she.model.commonmodel.SortParamList;
+import com.hjh.she.model.base.PageInfo;
+import com.hjh.she.model.base.QueryParamList;
+import com.hjh.she.model.base.SortParamList;
 
 public class JPAUtil {
 	private static ThreadLocal<Boolean> useQueryCache = new ThreadLocal<Boolean>();// 启用查询缓存
