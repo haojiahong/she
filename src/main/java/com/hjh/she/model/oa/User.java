@@ -9,6 +9,15 @@ import javax.persistence.Table;
 
 import com.hjh.she.model.base.AuditEntityBean;
 
+/**
+ * 用户
+ * 
+ * @author haojiahong
+ * 
+ * @createtime：2015-11-5 上午9:54:56
+ * 
+ * 
+ */
 @Entity
 @Table(name = "oa_user")
 public class User extends AuditEntityBean {

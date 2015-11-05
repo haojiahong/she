@@ -1,7 +1,5 @@
 package com.hjh.she.test.service.impl;
 
-import java.sql.Timestamp;
-
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 

@@ -412,3 +412,55 @@
 		{ID:1762324443, ConnectTime:"2015-11-04 23:03:52", UseCount:1, LastActiveTime:"2015-11-04 23:03:53"}
 	]
 }] of Hibernate SessionFactory for HibernateTransactionManager
+[INFO][2015-11-05 09:30:10,020][org.springframework.context.support.ClassPathXmlApplicationContext]Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@5492bbba: startup date [Thu Nov 05 09:30:10 CST 2015]; root of context hierarchy
+[INFO][2015-11-05 09:30:10,067][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring.xml]
+[INFO][2015-11-05 09:30:10,239][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-hibernate.xml]
+[INFO][2015-11-05 09:30:10,348][org.springframework.context.support.PropertySourcesPlaceholderConfigurer]Loading properties file from class path resource [config.properties]
+[ERROR][2015-11-05 09:30:10,442][com.alibaba.druid.pool.DruidAbstractDataSource]maxIdle is deprecated
+[INFO][2015-11-05 09:30:10,488][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} inited
+[INFO][2015-11-05 09:30:10,582][org.hibernate.annotations.common.Version]HCANN000001: Hibernate Commons Annotations {4.0.1.Final}
+[INFO][2015-11-05 09:30:10,582][org.hibernate.Version]HHH000412: Hibernate Core {4.1.7.Final}
+[INFO][2015-11-05 09:30:10,582][org.hibernate.cfg.Environment]HHH000206: hibernate.properties not found
+[INFO][2015-11-05 09:30:10,582][org.hibernate.cfg.Environment]HHH000021: Bytecode provider name : javassist
+[INFO][2015-11-05 09:30:10,847][org.hibernate.dialect.Dialect]HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[INFO][2015-11-05 09:30:10,863][org.hibernate.engine.transaction.internal.TransactionFactoryInitiator]HHH000399: Using default transaction strategy (direct JDBC transactions)
+[INFO][2015-11-05 09:30:10,863][org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory]HHH000397: Using ASTQueryTranslatorFactory
+[INFO][2015-11-05 09:30:11,035][com.hjh.she.basedao.MyApplicationContextUtil]applicationContext进行设置完成。。。
+[INFO][2015-11-05 09:30:11,051][org.springframework.orm.hibernate4.HibernateTransactionManager]Using DataSource [{
+	CreateTime:"2015-11-05 09:30:10",
+	ActiveCount:0,
+	PoolingCount:1,
+	CreateCount:1,
+	DestroyCount:0,
+	CloseCount:1,
+	ConnectCount:1,
+	Connections:[
+		{ID:591444221, ConnectTime:"2015-11-05 09:30:10", UseCount:1, LastActiveTime:"2015-11-05 09:30:10"}
+	]
+}] of Hibernate SessionFactory for HibernateTransactionManager
+[INFO][2015-11-05 09:34:55,725][org.springframework.context.support.ClassPathXmlApplicationContext]Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@5492bbba: startup date [Thu Nov 05 09:34:55 CST 2015]; root of context hierarchy
+[INFO][2015-11-05 09:34:55,772][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring.xml]
+[INFO][2015-11-05 09:34:55,928][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-hibernate.xml]
+[INFO][2015-11-05 09:34:56,053][org.springframework.context.support.PropertySourcesPlaceholderConfigurer]Loading properties file from class path resource [config.properties]
+[ERROR][2015-11-05 09:34:56,146][com.alibaba.druid.pool.DruidAbstractDataSource]maxIdle is deprecated
+[INFO][2015-11-05 09:34:56,193][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} inited
+[INFO][2015-11-05 09:34:56,287][org.hibernate.annotations.common.Version]HCANN000001: Hibernate Commons Annotations {4.0.1.Final}
+[INFO][2015-11-05 09:34:56,287][org.hibernate.Version]HHH000412: Hibernate Core {4.1.7.Final}
+[INFO][2015-11-05 09:34:56,287][org.hibernate.cfg.Environment]HHH000206: hibernate.properties not found
+[INFO][2015-11-05 09:34:56,302][org.hibernate.cfg.Environment]HHH000021: Bytecode provider name : javassist
+[INFO][2015-11-05 09:34:56,567][org.hibernate.dialect.Dialect]HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[INFO][2015-11-05 09:34:56,583][org.hibernate.engine.transaction.internal.TransactionFactoryInitiator]HHH000399: Using default transaction strategy (direct JDBC transactions)
+[INFO][2015-11-05 09:34:56,583][org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory]HHH000397: Using ASTQueryTranslatorFactory
+[INFO][2015-11-05 09:34:56,740][com.hjh.she.basedao.MyApplicationContextUtil]applicationContext进行设置完成。。。
+[INFO][2015-11-05 09:34:56,756][org.springframework.orm.hibernate4.HibernateTransactionManager]Using DataSource [{
+	CreateTime:"2015-11-05 09:34:56",
+	ActiveCount:0,
+	PoolingCount:1,
+	CreateCount:1,
+	DestroyCount:0,
+	CloseCount:1,
+	ConnectCount:1,
+	Connections:[
+		{ID:2090567670, ConnectTime:"2015-11-05 09:34:56", UseCount:1, LastActiveTime:"2015-11-05 09:34:56"}
+	]
+}] of Hibernate SessionFactory for HibernateTransactionManager

@@ -8,6 +8,11 @@ import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
+
+import com.hjh.she.shiro.ShiroUser;
+
 /**
  * 通用工具类
  * 
@@ -15,6 +20,20 @@ import java.util.UUID;
  * 
  */
 public class CommonUtil {
+
+	/**
+	 * 函数功能说明 TODO:获取当前登录用户实体类 Administrator修改者名字 2013-5-10修改日期 修改内容
+	 * 
+	 * @Title: getCurrendUser
+	 * @Description: TODO:
+	 * @param @return 设定文件
+	 * @return Users 返回类型
+	 * @throws
+	 */
+	public static ShiroUser getCurrendUser() {
+		Subject subject = SecurityUtils.getSubject();
+		return (ShiroUser) subject.getSession().getAttribute(Constants.SHIRO_USER);
+	}
 
 	public static Timestamp getDate() {
 		Date dt = new Date(System.currentTimeMillis());
@@ -110,8 +129,7 @@ public class CommonUtil {
 	}
 
 	public static String getChineseDate() {
-		return DateFormat.getDateInstance(1, Locale.CHINA).format(
-				new Date(System.currentTimeMillis()));
+		return DateFormat.getDateInstance(1, Locale.CHINA).format(new Date(System.currentTimeMillis()));
 	}
 
 }

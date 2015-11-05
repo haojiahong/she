@@ -71,8 +71,6 @@ http://www.springframework.org/schema/aop/spring-aop.xsd
 			</props>
 		</property>
 
-		<property name="entityInterceptor" ref="myHibernateInterceptor"></property>
-
 		<!-- 自动扫描注解方式配置的hibernate类文件 -->
 		<property name="packagesToScan">
 			<list>
@@ -84,8 +82,6 @@ http://www.springframework.org/schema/aop/spring-aop.xsd
 		<!-- <property name="mappingDirectoryLocations"> <list> <value>classpath:sy/hbm</value> 
 			</list> </property> -->
 	</bean>
-
-	<bean id="myHibernateInterceptor" class="com.hjh.she.model.base.MyHibernateInterceptor"></bean>
 
 	<!-- 配置事务管理器 -->
 	<bean name="transactionManager"

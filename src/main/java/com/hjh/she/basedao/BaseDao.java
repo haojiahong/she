@@ -16,10 +16,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hjh.she.model.base.AuditEntityBean;
 import com.hjh.she.model.base.PageInfo;
 import com.hjh.she.model.base.QueryParam;
 import com.hjh.she.model.base.QueryParamList;
 import com.hjh.she.model.base.SortParamList;
+import com.hjh.she.util.CommonUtil;
 
 @Service("baseDao")
 @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
@@ -151,6 +153,13 @@ public class BaseDao implements IDAO {
 	@Override
 	public <T> void create(T t) {
 		try {
+			if (t instanceof AuditEntityBean) {
+				((AuditEntityBean) t).setCreated(CommonUtil.getDateTime());
+				// if (CommonUtil.getCurrendUser() != null) {
+				// ((AuditEntityBean)
+				// t).setCreater(CommonUtil.getCurrendUser().getAccount());
+				// }
+			}
 			getSession().save(t);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -164,6 +173,14 @@ public class BaseDao implements IDAO {
 
 	@Override
 	public <T> void update(T t) {
+		if (t instanceof AuditEntityBean) {// 审计
+			((AuditEntityBean) t).setLastmod(CommonUtil.getDateTime());
+			// TODO 先注释，加完shiro后再打开
+			// if (CommonUtil.getCurrendUser() != null) {
+			// ((AuditEntityBean)
+			// t).setModifyer(CommonUtil.getCurrendUser().getAccount());
+			// }
+		}
 		getSession().saveOrUpdate(t);
 	};
 

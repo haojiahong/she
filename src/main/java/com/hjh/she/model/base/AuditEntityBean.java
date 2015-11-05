@@ -14,13 +14,13 @@ public class AuditEntityBean implements Serializable {
 	protected Timestamp created;
 
 	@Column(name = "CREATER", updatable = false)
-	protected Integer creater;
+	protected String creater;
 
 	@Column(name = "LASTMOD")
 	protected Timestamp lastmod;
 
 	@Column(name = "MODIFYER")
-	protected Integer modifyer;
+	protected String modifyer;
 
 	public Timestamp getCreated() {
 		return created;
@@ -38,19 +38,19 @@ public class AuditEntityBean implements Serializable {
 		this.lastmod = lastmod;
 	}
 
-	public Integer getCreater() {
+	public String getCreater() {
 		return creater;
 	}
 
-	public void setCreater(Integer creater) {
+	public void setCreater(String creater) {
 		this.creater = creater;
 	}
 
-	public Integer getModifyer() {
+	public String getModifyer() {
 		return modifyer;
 	}
 
-	public void setModifyer(Integer modifyer) {
+	public void setModifyer(String modifyer) {
 		this.modifyer = modifyer;
 	}
 

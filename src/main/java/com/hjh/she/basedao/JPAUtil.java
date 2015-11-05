@@ -71,6 +71,7 @@ public class JPAUtil {
 	 * @param pageInfo
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public static <T> List<T> find(String jpql, QueryParamList params, SortParamList sortParams, PageInfo pageInfo) {
 		// IDAO dao = null;
 		// try {
