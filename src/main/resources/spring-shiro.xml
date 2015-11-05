@@ -56,7 +56,7 @@
 		<property name="filterChainDefinitions">
 			<value>
 				/Kaptcha.jpg = anon
-				/js/** = anon
+				/jslib/** = anon
 				/css/** = anon
 				/extend/** = anon
 				/systemAction!load.action = anon
