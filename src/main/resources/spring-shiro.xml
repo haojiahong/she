@@ -59,7 +59,7 @@
 				/jslib/** = anon
 				/css/** = anon
 				/extend/** = anon
-				/systemAction!load.action = anon
+				/systemAction!load.do = anon
 				/** = authc
 				<!--/login=anon / /index.jsp=authc /login.do*=authc /**=authc /permission/**=roles[admin] 
 					/logout.do*=anon -->

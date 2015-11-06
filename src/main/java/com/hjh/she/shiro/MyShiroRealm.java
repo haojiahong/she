@@ -19,6 +19,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.hjh.she.model.oa.User;
+import com.hjh.she.util.CommonUtil;
 import com.hjh.she.util.Constants;
 
 public class MyShiroRealm extends AuthorizingRealm {
@@ -70,12 +71,12 @@ public class MyShiroRealm extends AuthorizingRealm {
 	// 获取认证信息
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
 		CaptchaUsernamePasswordToken token = (CaptchaUsernamePasswordToken) authcToken;
-		// 通过表单接收的用户名
-		String username = token.getUsername();
-		if (username != null && !"".equals(username) && doCaptchaValidate(token)) {
+		// 通过表单接收的账号
+		String account = token.getUsername();
+		if (!CommonUtil.strIsNull(account) && doCaptchaValidate(token)) {
 			SessionFactory s = this.getSessionFactory();
-			String hql = "from Use t where t.status='A' and t.name=:name";
-			User user = (User) s.getCurrentSession().createQuery(hql).setParameter("name", username).uniqueResult();
+			String hql = "from User t where t.status='A' and t.account=:account";
+			User user = (User) s.getCurrentSession().createQuery(hql).setParameter("account", account).uniqueResult();
 			if (user != null) {
 				Subject subject = SecurityUtils.getSubject();
 				subject.getSession().setAttribute(Constants.SHIRO_USER,

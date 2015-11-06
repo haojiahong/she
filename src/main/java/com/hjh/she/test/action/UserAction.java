@@ -5,12 +5,10 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
-import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-@ParentPackage("basePackage")
 @Namespace("/")
 @Action(value = "userAction", results = { @Result(name = "toList", location = "/list.jsp"),
 		@Result(name = "success", location = "/ok.jsp") })

@@ -1,0 +1,1 @@
+1.shiro调用hibernate的session的时候，session已经关了吗？hibernate的session是什么时候关的？shrio调用session时，要打开opensessioninview。

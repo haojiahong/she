@@ -27,7 +27,21 @@
 	<!-- 对于WebLogic,Orion,OC4J此属性应该设置成true -->
 	<constant name="struts.dispatcher.parametersWorkaround" value="false" />
 
-	<package name="basePackage" extends="struts-default">
+	<constant name="struts.convention.default.parent.package"
+		value="default-package" />
+
+	<package name="default-package" extends="convention-default">
+		<global-results>
+			<result name="noAuth">/error/noAuth.jsp</result>
+			<result name="noSession">/error/noSession.jsp</result>
+			<result name="strutsException">/error/strutsException.jsp</result>
+		</global-results>
+
+		<global-exception-mappings>
+			<exception-mapping result="strutsException"
+				exception="java.lang.Exception"></exception-mapping>
+		</global-exception-mappings>
+
 	</package>
 
 </struts>
