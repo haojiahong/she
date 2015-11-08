@@ -8,7 +8,7 @@ import com.hjh.she.model.oa.User;
 import com.hjh.she.test.service.UserServcie;
 import com.hjh.she.util.CommonUtil;
 
-@Component("userService")
+//@Component("userService")
 public class UserServiceImpl implements UserServcie {
 
 	private static final Logger logger = Logger.getLogger(UserServiceImpl.class);

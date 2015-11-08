@@ -128,6 +128,25 @@ public class BaseDao implements IDAO {
 		return returnList;
 	}
 
+
+	public List executeNativeQuery(String nativeSql) throws Exception {
+		return executeNativeQuery(nativeSql, null);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List executeNativeQuery(String nativeSql, QueryParamList params) throws Exception {
+		List<Object> returnList = new ArrayList<Object>();
+		try {
+			Query query = getSession().createSQLQuery(nativeSql);
+			setQueryParamList(query, params);
+			returnList = query.list();
+		} catch (Throwable cause) {
+			new Exception("执行本地查询出错!" + cause.getMessage(), cause);
+		}
+
+		return returnList;
+	}
+
 	private void setQueryParamList(Query query, QueryParamList paramLs) {
 		if (query != null && paramLs != null && paramLs.getParams().size() > 0) {
 			List<QueryParam> list = paramLs.getParams();

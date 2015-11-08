@@ -47,7 +47,7 @@
 		<property name="securityManager" ref="securityManager" />
 		<property name="loginUrl" value="/login.jsp" />
 		<property name="successUrl" value="/index.jsp" />
-		<property name="unauthorizedUrl" value="/error/error.jsp" />
+		<property name="unauthorizedUrl" value="/shejsp/error/error.jsp" />
 		<property name="filters">
 			<util:map>
 				<entry key="authc" value-ref="formAuthenticationFilter" />
@@ -57,7 +57,7 @@
 			<value>
 				/Kaptcha.jpg = anon
 				/jslib/** = anon
-				/css/** = anon
+				/cssstyle/** = anon
 				/extend/** = anon
 				/systemAction!load.do = anon
 				/** = authc

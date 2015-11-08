@@ -28,9 +28,9 @@
 	<constant name="struts.dispatcher.parametersWorkaround" value="false" />
 
 	<constant name="struts.convention.default.parent.package"
-		value="basePackage" />
+		value="default-package" />
 
-	<package name="basePackage" extends="convention-default">
+	<package name="default-package" extends="convention-default">
 		<global-results>
 			<result name="noAuth">/error/noAuth.jsp</result>
 			<result name="noSession">/error/noSession.jsp</result>

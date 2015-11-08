@@ -7,8 +7,6 @@ import com.hjh.she.model.base.PageInfo;
 import com.hjh.she.model.base.QueryParamList;
 import com.hjh.she.model.base.SortParamList;
 
-
-
 public abstract interface IDAO {
 	/**
 	 * find查询
@@ -19,8 +17,7 @@ public abstract interface IDAO {
 	 * @param pageInfo
 	 * @return
 	 */
-	public abstract List find(String jpql, QueryParamList params,
-			SortParamList sortParams, PageInfo pageInfo);
+	public abstract List find(String jpql, QueryParamList params, SortParamList sortParams, PageInfo pageInfo);
 
 	/**
 	 * 创建一条数据
@@ -68,4 +65,8 @@ public abstract interface IDAO {
 	 * @return
 	 */
 	public abstract Long getTotalCount(String jpql, QueryParamList params);
+
+	public abstract List executeNativeQuery(String paramString, QueryParamList paramQueryParamList) throws Exception;
+
+	public abstract List executeNativeQuery(String paramString) throws Exception;
 }

@@ -3,12 +3,7 @@
 <html>
   <head>
     <title>login</title>
-	
-	<script type="text/javascript" src="${pageContext.request.contextPath}/jslib/jquery-easyui-1.4.1/jquery.min.js"></script>
-  	<script type="text/javascript" src="${pageContext.request.contextPath}/jslib/jquery-easyui-1.4.1/jquery.easyui.min.js"></script>
-  	<script type="text/javascript" src="${pageContext.request.contextPath}/jslib/jquery-easyui-1.4.1/locale/easyui-lang-zh_CN.js"></script>
-  	<link rel="stylesheet" href="${pageContext.request.contextPath}/jslib/jquery-easyui-1.4.1/themes/bootstrap/easyui.css" type="text/css"></link>
-  	<link rel="stylesheet" href="${pageContext.request.contextPath}/jslib/jquery-easyui-1.4.1/themes/icon.css" type="text/css"></link>
+	<jsp:include page="/shejsp/sys/inc.jsp"></jsp:include>
   </head>
   
   <body>
@@ -26,7 +21,7 @@
 				</tr>	
 				<tr>
 					<th>验证码</th>
-					<td><input name="captcha" class="easyui-validatebox textbox" data-options="required:true,missingMessage:'请输入验证码'"/></td>
+					<td><input name="captcha" class="easyui-validatebox textbox" data-options="required:true,missingMessage:'请输入验证码',tipPosition:'left'"/></td>
 					<td><img id="Kaptcha" src="Kaptcha.jpg" style="width:85px;height:35px;margin-top: -10px;" /></td>
 				</tr>
 				<tr>
@@ -48,7 +43,7 @@ $(function() {
 			console.debug(data);
 			var data = eval('(' + data + ')');
 			if(data.status){
-				setTimeout("window.location.href='index.jsp'", 1000);
+				setTimeout("window.location.href='index.jsp'", 500);
 			}else{
 				$.messager.show({
 					title:'登录失败',
@@ -63,6 +58,12 @@ $(function() {
 			}
 		}
 	});
+	
+	//点击验证码，更改数字字母
+	$('#Kaptcha').click(     
+	        function() {     
+	           $(this).hide().attr('src','Kaptcha.jpg?' + Math.floor(Math.random() * 100)).fadeIn();     
+	    });
 	
 });
 </script>

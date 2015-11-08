@@ -82,6 +82,14 @@ public class JPAUtil {
 		return dao.find(jpql, params, sortParams, pageInfo);
 	}
 
+	public static <T> List<T> executeNativeQuery(String nativeSql) throws Exception {
+		return executeNativeQuery(nativeSql, null);
+	}
+
+	public static <T> List<T> executeNativeQuery(String nativeSql, QueryParamList params) throws Exception {
+		return dao.executeNativeQuery(nativeSql, params);
+	}
+
 	/**
 	 * 创建一条数据
 	 * 
