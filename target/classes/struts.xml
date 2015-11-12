@@ -26,15 +26,17 @@
 	<constant name="struts.tag.altSyntax" value="true" />
 	<!-- 对于WebLogic,Orion,OC4J此属性应该设置成true -->
 	<constant name="struts.dispatcher.parametersWorkaround" value="false" />
+	<!-- 默认所有的结果页面都存储在WEB-INF/content下，通过这个属性的值来改变到其他路径。 -->
+	<constant name="struts.convention.result.path" value="/shejsp" />
 
 	<constant name="struts.convention.default.parent.package"
 		value="default-package" />
 
 	<package name="default-package" extends="convention-default">
 		<global-results>
-			<result name="noAuth">/error/noAuth.jsp</result>
-			<result name="noSession">/error/noSession.jsp</result>
-			<result name="strutsException">/error/strutsException.jsp</result>
+			<result name="noAuth">/shejsp/error/noAuth.jsp</result>
+			<result name="noSession">/shejsp/error/noSession.jsp</result>
+			<result name="strutsException">/shejsp/error/strutsException.jsp</result>
 		</global-results>
 
 		<global-exception-mappings>

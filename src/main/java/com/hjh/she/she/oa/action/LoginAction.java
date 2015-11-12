@@ -30,7 +30,7 @@ public class LoginAction extends BaseAction {
 
 	@Autowired
 	private LoginService loginService;
-	
+
 	private String account;
 	private String password;
 	private String captcha;
@@ -85,6 +85,7 @@ public class LoginAction extends BaseAction {
 
 	/**
 	 * 查询用户所有菜单权限
+	 * 
 	 * @return
 	 * @throws Exception
 	 */
@@ -131,6 +132,10 @@ public class LoginAction extends BaseAction {
 
 	public void setAccount(String account) {
 		this.account = account;
+	}
+
+	@Override
+	protected void retrieve() {
 	}
 
 }

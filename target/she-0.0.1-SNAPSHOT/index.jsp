@@ -37,18 +37,18 @@
 <script type="text/javascript">
 	$(function(){
 		initMenu();
-		if (jqueryUtil.isLessThanIe8()) {
+		/* if (jqueryUtil.isLessThanIe8()) {
 			$.messager.show({
 				title : '警告',
 				msg : '您使用的浏览器版本太低！<br/>建议您使用谷歌浏览器来获得更快的页面响应效果！',
 				timeout : 1000 * 30
 			});
-		}
+		} */
 	});
 	function initMenu(){
 		var $ma=$("#menuAccordion");
 		$ma.accordion({animate:true,fit:true,border:false});
-		$.post("systemAction!findAllFunctionList.action", {userName:"1"}, function(rsp) {
+		$.post("systemAction!findAllFunctionList.do", {userName:"1"}, function(rsp) {
 			$.each(rsp,function(i,e){
 				var menulist ="<div class=\"well well-small\">";
 				if(e.child && e.child.length>0){

@@ -25,4 +25,10 @@ public class UserServiceImpl implements UserService {
 		List<User> result = JPAUtil.find(jpql, params, sortInfo, pageInfo);
 		return result;
 	}
+	
+	@Override
+	public User retrieveOne(String userId) {
+		User user = JPAUtil.loadById(User.class, userId);
+		return user;
+	}
 }

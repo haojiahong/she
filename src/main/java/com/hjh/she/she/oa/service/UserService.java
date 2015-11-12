@@ -10,4 +10,6 @@ public interface UserService {
 
 	public List<User> findAllUserList(String userNameSch, SortParamList sortInfo, PageInfo pageInfo);
 
+	public User retrieveOne(String userId);
+
 }
