@@ -134,8 +134,4 @@ public class LoginAction extends BaseAction {
 		this.account = account;
 	}
 
-	@Override
-	protected void retrieve() {
-	}
-
 }

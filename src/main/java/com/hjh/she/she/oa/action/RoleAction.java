@@ -13,8 +13,7 @@ import com.hjh.she.viewModel.GridModel;
 
 @Namespace("/oa")
 @Action(value = "roleAction")
-@Results({ @Result(name = "input", location = "rolelist.jsp", params = { "root", "gridModel" }),
-		@Result(name = "editUser", location = "useradd.jsp") })
+@Results({ @Result(name = "editUser", location = "useradd.jsp") })
 public class RoleAction extends BaseAction {
 
 	private static final long serialVersionUID = 1L;
@@ -25,12 +24,12 @@ public class RoleAction extends BaseAction {
 	private String roleId;
 	private Role role;
 
-	private GridModel gridModel = new GridModel();
-	
-	public void retrieve() {
-		gridModel.setRows(roleService.findAllUserList(roleNameSch, getSortInfo(), getPageInfo()));
+	public String retrieve() {
+		GridModel gridModel = new GridModel();
+		gridModel.setRows(roleService.findAllRoleList(roleNameSch, getSortInfo(), getPageInfo()));
 		gridModel.setTotal(getPageInfo().getAllRowNum());
-		// OutputJson(gridModel,"text/");
+		OutputJson(gridModel);
+		return null;
 	}
 
 	public String editUser() {
@@ -60,14 +59,6 @@ public class RoleAction extends BaseAction {
 
 	public void setRole(Role role) {
 		this.role = role;
-	}
-
-	public GridModel getGridModel() {
-		return gridModel;
-	}
-
-	public void setGridModel(GridModel gridModel) {
-		this.gridModel = gridModel;
 	}
 
 }

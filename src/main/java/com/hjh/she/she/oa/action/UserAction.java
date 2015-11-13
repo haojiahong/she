@@ -24,12 +24,12 @@ public class UserAction extends BaseAction {
 	private String userId;
 	private User user;
 
-	public void retrieve() {
+	public String retrieve() {
 		GridModel gridModel = new GridModel();
 		gridModel.setRows(userService.findAllUserList(userNameSch, getSortInfo(), getPageInfo()));
 		gridModel.setTotal(getPageInfo().getAllRowNum());
 		OutputJson(gridModel);
-
+		return null;
 	}
 
 	public String editUser() {

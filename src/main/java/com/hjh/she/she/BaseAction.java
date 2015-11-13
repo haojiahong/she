@@ -21,25 +21,12 @@ public abstract class BaseAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;
 
-	private String action = "";
 	private int page;
 	private int rows = 20;// 默认值
 	private String sort;
 	private String order;
 	private PageInfo pageInfo = new PageInfo();
 	private SortParamList sortInfo = new SortParamList();
-
-	@Override
-	public String execute() throws Exception {
-		if (action == "") {
-			this.retrieve();
-			return "input";
-		} else {
-			return super.execute();
-		}
-	}
-
-	protected abstract void retrieve();
 
 	public void OutputJson(Object object) {
 		PrintWriter out = null;
@@ -126,14 +113,6 @@ public abstract class BaseAction extends ActionSupport {
 		if (sort != null)
 			sortInfo.addParam(sort, order);
 		return sortInfo;
-	}
-
-	public String getAction() {
-		return action;
-	}
-
-	public void setAction(String action) {
-		this.action = action;
 	}
 
 }

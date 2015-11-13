@@ -16,7 +16,7 @@ import com.hjh.she.util.CommonUtil;
 public class RoleServiceImpl implements RoleService {
 
 	@Override
-	public List<Role> findAllUserList(String roleNameSch, SortParamList sortInfo, PageInfo pageInfo) {
+	public List<Role> findAllRoleList(String roleNameSch, SortParamList sortInfo, PageInfo pageInfo) {
 		String jpql = "select role from Role role where 1=1";
 		QueryParamList params = new QueryParamList();
 		if (!CommonUtil.strIsNull(roleNameSch)) {

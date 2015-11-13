@@ -6,7 +6,8 @@
 </head>
 <body>
 	<table id="roleTable"  class="easyui-datagrid" pagination="true"  rownumbers="true"
-			data-options="url:'roleAction.do',toolbar:'#roletoolbar',singleSelect:true,fit:true,striped:true">
+		data-options="url:'${pageContext.request.contextPath}/oa/roleAction!retrieve.do',toolbar:'#roletoolbar',
+		singleSelect:true,fit:true,striped:true">
 				<thead>
 					<tr>
 						<th field="roleId" data-options="formatter:ezEditFromat" width="250" align="center">编辑</th>
@@ -50,7 +51,7 @@ function getButtons(detaGridId, addFunction) {
 
 //var myBtn = '<button type="button">保存</button>';
 function add() {
-	$.modalDialog({
+	jqueryUtil.modalDialog({
 		title : '添加',
 		width : 600,
 		height : 500,

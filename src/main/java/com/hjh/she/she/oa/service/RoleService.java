@@ -8,6 +8,6 @@ import com.hjh.she.model.oa.Role;
 
 public interface RoleService {
 
-	List<Role> findAllUserList(String roleNameSch, SortParamList sortInfo, PageInfo pageInfo);
+	List<Role> findAllRoleList(String roleNameSch, SortParamList sortInfo, PageInfo pageInfo);
 
 }
