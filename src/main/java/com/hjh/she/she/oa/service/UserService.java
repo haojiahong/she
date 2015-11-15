@@ -12,4 +12,10 @@ public interface UserService {
 
 	public User retrieveOne(String userId);
 
+	public void save(User user);
+
+	public User add();
+
+	public void remove(User user);
+
 }

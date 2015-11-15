@@ -20,11 +20,38 @@ public class RoleServiceImpl implements RoleService {
 		String jpql = "select role from Role role where 1=1";
 		QueryParamList params = new QueryParamList();
 		if (!CommonUtil.strIsNull(roleNameSch)) {
-			jpql += " and role.name =:name";
-			params.addParam("name", roleNameSch);
+			jpql += " and role.name like :name";
+			params.addParam("name", "%" + roleNameSch + "%");
 		}
 		List<Role> result = JPAUtil.find(jpql, params, sortInfo, pageInfo);
 		return result;
+	}
+
+	@Override
+	public Role retrieveOne(String roleId) {
+		return JPAUtil.loadById(Role.class, roleId);
+	}
+
+	@Override
+	public Role addRole() {
+		return new Role();
+	}
+
+	@Override
+	public void save(Role role) {
+		if (CommonUtil.strIsNull(role.getRoleId())) {
+			role.setRoleId(CommonUtil.genUUID());
+			JPAUtil.create(role);
+		} else {
+			JPAUtil.update(role);
+		}
+	}
+
+	@Override
+	public void remove(Role role) {
+		JPAUtil.refresh(role);
+		JPAUtil.remove(Role.class, role.getRoleId());
+
 	}
 
 }

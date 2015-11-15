@@ -2,6 +2,7 @@ package com.hjh.she.she;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.ParameterizedType;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,19 +15,38 @@ import com.hjh.she.model.base.PageInfo;
 import com.hjh.she.model.base.SortParamList;
 import com.hjh.she.viewModel.SheJson;
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
 
 @ParentPackage("default-package")
 @Namespace("/")
-public abstract class BaseAction extends ActionSupport {
+public abstract class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 
 	private static final long serialVersionUID = 1L;
 
+	public T model;
 	private int page;
 	private int rows = 20;// 默认值
 	private String sort;
 	private String order;
 	private PageInfo pageInfo = new PageInfo();
 	private SortParamList sortInfo = new SortParamList();
+
+	// modelDriven的支持
+	// 使用modelDriven之后，可以在对象栈中直接取到model对象。
+	public BaseAction() {
+		ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
+		Class<T> clazz = (Class<T>) pt.getActualTypeArguments()[0];
+		try {
+			model = clazz.newInstance();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public T getModel() {// 实现了modeldriven接口，将实体对象push到了对象栈
+		return model;
+	}
 
 	public void OutputJson(Object object) {
 		PrintWriter out = null;

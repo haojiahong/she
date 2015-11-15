@@ -24,7 +24,7 @@ import com.hjh.she.viewModel.SheJson;
 @Action(value = "systemAction", results = { @Result(name = Constants.LOGIN_SUCCESS_URL, location = "/index.jsp"),
 		@Result(name = Constants.LOGIN_URL, location = "/login.jsp"),
 		@Result(name = Constants.LOGIN_LOGIN_OUT_URL, type = "redirect", location = "systemAction!loginInit.action") })
-public class LoginAction extends BaseAction {
+public class LoginAction extends BaseAction<Object> {
 	private static final Logger logger = Logger.getLogger(LoginAction.class);
 	private static final long serialVersionUID = 1L;
 

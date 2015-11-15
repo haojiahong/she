@@ -43,7 +43,7 @@ public class User extends AuditEntityBean {
 	private String account;
 
 	@Column(name = "LOGIN_COUNT")
-	private Integer loginCount;
+	private Long loginCount;
 
 	@Column(name = "NAME")
 	private String name;
@@ -79,7 +79,10 @@ public class User extends AuditEntityBean {
 	private String answer;
 
 	@Column(name = "IS_ONLINE")
-	private String isOnline;
+	private Long isOnline;
+
+	@Column(name = "GENDER")
+	private String gender;
 
 	@Column(name = "DESCRIPTION")
 	private String description;
@@ -139,14 +142,6 @@ public class User extends AuditEntityBean {
 
 	public void setAccount(String account) {
 		this.account = account;
-	}
-
-	public Integer getLoginCount() {
-		return loginCount;
-	}
-
-	public void setLoginCount(Integer loginCount) {
-		this.loginCount = loginCount;
 	}
 
 	public String getName() {
@@ -237,14 +232,6 @@ public class User extends AuditEntityBean {
 		this.answer = answer;
 	}
 
-	public String getIsOnline() {
-		return isOnline;
-	}
-
-	public void setIsOnline(String isOnline) {
-		this.isOnline = isOnline;
-	}
-
 	public String getDescription() {
 		return description;
 	}
@@ -275,6 +262,30 @@ public class User extends AuditEntityBean {
 
 	public void setLastVisit(Timestamp lastVisit) {
 		this.lastVisit = lastVisit;
+	}
+
+	public Long getLoginCount() {
+		return loginCount;
+	}
+
+	public void setLoginCount(Long loginCount) {
+		this.loginCount = loginCount;
+	}
+
+	public Long getIsOnline() {
+		return isOnline;
+	}
+
+	public void setIsOnline(Long isOnline) {
+		this.isOnline = isOnline;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 }

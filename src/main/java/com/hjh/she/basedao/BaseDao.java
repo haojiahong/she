@@ -128,7 +128,6 @@ public class BaseDao implements IDAO {
 		return returnList;
 	}
 
-
 	public List executeNativeQuery(String nativeSql) throws Exception {
 		return executeNativeQuery(nativeSql, null);
 	}
@@ -174,10 +173,9 @@ public class BaseDao implements IDAO {
 		try {
 			if (t instanceof AuditEntityBean) {
 				((AuditEntityBean) t).setCreated(CommonUtil.getDateTime());
-				// if (CommonUtil.getCurrendUser() != null) {
-				// ((AuditEntityBean)
-				// t).setCreater(CommonUtil.getCurrendUser().getAccount());
-				// }
+				if (CommonUtil.getCurrendUser() != null) {
+					((AuditEntityBean) t).setCreater(CommonUtil.getCurrendUser().getAccount());
+				}
 			}
 			getSession().save(t);
 		} catch (Exception e) {
@@ -192,13 +190,11 @@ public class BaseDao implements IDAO {
 
 	@Override
 	public <T> void update(T t) {
-		if (t instanceof AuditEntityBean) {// 审计
+		if (t instanceof AuditEntityBean) {
 			((AuditEntityBean) t).setLastmod(CommonUtil.getDateTime());
-			// TODO 先注释，加完shiro后再打开
-			// if (CommonUtil.getCurrendUser() != null) {
-			// ((AuditEntityBean)
-			// t).setModifyer(CommonUtil.getCurrendUser().getAccount());
-			// }
+			if (CommonUtil.getCurrendUser() != null) {
+				((AuditEntityBean) t).setModifyer(CommonUtil.getCurrendUser().getAccount());
+			}
 		}
 		getSession().saveOrUpdate(t);
 	};
