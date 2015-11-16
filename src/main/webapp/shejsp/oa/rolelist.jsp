@@ -10,10 +10,11 @@
 		singleSelect:true,fit:true,striped:true">
 				<thead>
 					<tr>
-						<th field="roleId" data-options="formatter:ezEditFromat" width="100" align="center">编辑</th>
+						<th field="roleId" data-options="formatter:ezEditFromat" width="100" align="center">操作</th>
 						<th field="name" width="100" sortable="true" > 角色名称 </th>
-						<th field="description" width="120" sortable="true" >角色说明</th>
-						<th field="sort" width="120" sortable="true" >序号</th>
+						<th field="description" width="120" sortable="true" >备注</th>
+						<th field="status" width="100" sortable="true" >状态</th>
+						<th field="sortNum" width="100" sortable="true" >序号</th>
 					</tr>
 				</thead>
 	</table>
@@ -57,16 +58,16 @@ function reload() {
 }
 
 function add() {
-	parent.$.modalDialog({
+	var params = {roleNameSch:$("#roleNameSch").val()};
+	var add_dialog = parent.jqueryUtil.modalDialog({
 		title : '添加',
 		width : 600,
-		height : 500,
-		href : '${pageContext.request.contextPath}/oa/roleAction!add.do',
+		height : 400,
+		url : '${pageContext.request.contextPath}/oa/roleAction!add.do',
 		buttons : [ {
 			text : "保存",
 			handler : function() {
-				var f = parent.$.modalDialog.handler.find("#roleadd_form");
-				f.submit();
+				add_dialog.find('iframe').get(0).contentWindow.submitForm(add_dialog, rolelist_grid, parent.$,params);
 			}
 		}]
 	});
@@ -78,7 +79,7 @@ function ezEditFromat(roleId,row,index){
 	str += "&nbsp;";
 	str += jqueryUtil.formatString('<img title="删除" src="{1}" onclick="delRole(\'{0}\');"/>', roleId,'${pageContext.request.contextPath}/cssstyle/images/extjs_icons/cancel.png');
 	str += "&nbsp;";
-	str += jqueryUtil.formatString('<img title="附件管理" src="{1}" onclick="setPrivilege(\'{0}\');"/>', roleId,'${pageContext.request.contextPath}/cssstyle/images/extjs_icons/lock/lock_edit.png');
+	str += jqueryUtil.formatString('<img title="设置权限" src="{1}" onclick="setPrivilege(\'{0}\');"/>', roleId,'${pageContext.request.contextPath}/cssstyle/images/extjs_icons/lock/lock_edit.png');
 	return str;
 }
 

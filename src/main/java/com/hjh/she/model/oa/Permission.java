@@ -1,9 +1,18 @@
 package com.hjh.she.model.oa;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.apache.struts2.json.annotations.JSON;
 
 import com.hjh.she.model.base.AuditEntityBean;
 
@@ -59,8 +68,18 @@ public class Permission extends AuditEntityBean {
 	@Column(name = "STATUS")
 	private String status;
 
-	@Column(name = "SORT")
-	private Integer sort;
+	@Column(name = "SORT_NUM")
+	private Integer sortNum;
+
+	@Column(name = "HAVE_SUB")
+	private String haveSub;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "PID", insertable = false, updatable = false)
+	private Permission upPermission;
+
+	@OneToMany(mappedBy = "upPermission", cascade = CascadeType.REMOVE)
+	private List<Permission> subPermissionLs;
 
 	public String getPermissionId() {
 		return permissionId;
@@ -158,11 +177,38 @@ public class Permission extends AuditEntityBean {
 		this.status = status;
 	}
 
-	public Integer getSort() {
-		return sort;
+	public Integer getSortNum() {
+		return sortNum;
 	}
 
-	public void setSort(Integer sort) {
-		this.sort = sort;
+	public void setSortNum(Integer sortNum) {
+		this.sortNum = sortNum;
 	}
+
+	public String getHaveSub() {
+		return haveSub;
+	}
+
+	public void setHaveSub(String haveSub) {
+		this.haveSub = haveSub;
+	}
+
+	@JSON(serialize = false)
+	public Permission getUpPermission() {
+		return upPermission;
+	}
+
+	public void setUpPermission(Permission upPermission) {
+		this.upPermission = upPermission;
+	}
+
+	@JSON(serialize = false)
+	public List<Permission> getSubPermissionLs() {
+		return subPermissionLs;
+	}
+
+	public void setSubPermissionLs(List<Permission> subPermissionLs) {
+		this.subPermissionLs = subPermissionLs;
+	}
+
 }

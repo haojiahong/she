@@ -22,7 +22,7 @@ public class LoginServiceImpl implements LoginService {
 		String sql = null;
 		// 超级管理员默认拥有所有功能权限
 		if (Constants.SYSTEM_ADMINISTRATOR.equals(user.getAccount())) {
-			sql = "SELECT p.PERMISSION_ID,p.PID,p.NAME,p.ICONCLS,p.URL FROM OA_PERMISION AS p "
+			sql = "SELECT p.PERMISSION_ID,p.PID,p.NAME,p.ICONCLS,p.URL FROM OA_PERMISSION AS p "
 					+ " where p.STATUS='A' and p.TYPE='F' and p.ISUSED='Y'";
 		} else {
 			sql = "SELECT DISTINCT p.PERMISSION_ID,p.PID,p.NAME,p.ICONCLS,p.URL FROM\n"

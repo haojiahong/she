@@ -34,8 +34,8 @@ public class Role extends AuditEntityBean {
 	@Column(name = "STATUS")
 	private String status;
 
-	@Column(name = "SORT")
-	private Integer sort;
+	@Column(name = "SORT_NUM")
+	private Integer sortNum;
 
 	public String getRoleId() {
 		return roleId;
@@ -69,12 +69,12 @@ public class Role extends AuditEntityBean {
 		this.status = status;
 	}
 
-	public Integer getSort() {
-		return sort;
+	public Integer getSortNum() {
+		return sortNum;
 	}
 
-	public void setSort(Integer sort) {
-		this.sort = sort;
+	public void setSortNum(Integer sortNum) {
+		this.sortNum = sortNum;
 	}
 
 }

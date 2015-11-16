@@ -35,7 +35,7 @@
 			
 			<tr>
 				<th>排序号</th>
-				<td><input name="sort" value="${role.sort}" 
+				<td><input name="sortNum" value="${role.sortNum}" 
 					class="easyui-validatebox textbox  formWidth"
 					data-options="required:true,validType:'length[0,200]'" /></td>
 			</tr>
