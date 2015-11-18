@@ -30,7 +30,6 @@
 				<td><input name="status" value="${role.status }" 
 					class="easyui-validatebox textbox formWidth"	 	
 					data-options="required:true,validType:'length[0,50]'" /></td>
-				
 			</tr>
 			
 			<tr>
@@ -48,9 +47,6 @@
 					data-options="validType:['length[0,200]']"></input>
 				</td>
 			</tr>
-			
-			
-				
 		</table>
 	</form>
 </div>
@@ -58,24 +54,20 @@
 </div>
 </div>
 <script type="text/javascript">
-// 	$(function() {
-// 		$('#roleadd_form').form(ez_formSub);
-// 	});
-	
-	var submitForm = function($dialog, $grid, $pjq,params) {
-		if ($('form').form('validate')) {
-			var url = "${pageContext.request.contextPath}/oa/roleAction!save.do";
-			$.post(url, jqueryUtil.serializeObject($('form')), function(result) {
-				if (result) {
-					$grid.datagrid('load',params);
-					$dialog.dialog('destroy');
-					$pjq.messager.alert('提示', result.message,'info');
-				} else {
-					$pjq.messager.alert('提示', result.message, 'error');
-				}
-			}, 'json');
-		}
-	};
+var submitForm = function($dialog, $grid, $pjq,params) {
+	if ($('form').form('validate')) {
+		var url = "${pageContext.request.contextPath}/oa/roleAction!save.do";
+		$.post(url, jqueryUtil.serializeObject($('form')), function(result) {
+			if (result) {
+				$grid.datagrid('load',params);
+				$dialog.dialog('destroy');
+				$pjq.messager.alert('提示', result.message,'info');
+			} else {
+				$pjq.messager.alert('提示', result.message, 'error');
+			}
+		}, 'json');
+	}
+};
 </script>
 </body>
 </html>

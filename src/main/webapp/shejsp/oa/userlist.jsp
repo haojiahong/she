@@ -12,7 +12,7 @@
 				toolbar:'#toolbar',fit:true,striped:true,border:false">
 				<thead>
 					<tr>
-					    <th field="userId" data-options="formatter:ezEditFromat" width="100" align="center">编辑</th>
+					    <th field="userId" data-options="formatter:ezEditFromat" width="100" align="center">操作</th>
 						<th field="myid" width="100" sortable="true">用户编码</th>
 						<th field="account" width="100" sortable="true">用户账号</th>
 						<th field="name" width="100" sortable="true">用户名称</th>
@@ -20,6 +20,7 @@
 						<th field="tel" width="120">电话</th>
 						<th field="email" width="120">邮箱</th>
 						<th field="description" width="120">用户说明</th>
+						<th field="roleNum" data-options="formatter:ezEditFromatForSetRole" width="100" align="center">设置角色</th>
 					</tr>
 				</thead>
 			</table>
@@ -37,7 +38,6 @@
 						</table>
 					</td>
 				</tr>
-				
 				<tr>
 					<table>
 						<tr>
@@ -53,7 +53,6 @@
 					</table>
 				</tr>
 			</table>
-		 
 		</div>
 	</div>
 	<input type="hidden" name="text1" />
@@ -64,9 +63,7 @@
 					reload();
 				}
 			});
-		user_grid = $('#easyTable').datagrid({
-			
-		});
+		user_grid = $('#easyTable').datagrid({ });
 	});
 	
 	function ezEditFromat(userId,row,index){
@@ -135,6 +132,16 @@
 				});
 			}
 		});
+	}
+	
+	function ezEditFromatForSetRole(roleNum,row,index){
+		var str = "";
+		str += jqueryUtil.formatString('<a onclick="editUser(\'{0}\');" style="cursor: pointer;text-decoration:underline;">{1}</a>', row.userId , roleNum);
+		return str;
+	}
+	
+	function setRole(userId){
+		
 	}
 </script>
 </body>

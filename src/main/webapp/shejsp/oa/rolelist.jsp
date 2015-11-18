@@ -93,8 +93,6 @@ function showRole(roleId){
 		buttons : [ {
 			text : 	'保存',
 			handler : function() {
-// 				var f = parent.$.modalDialog.handler.find("#roleadd_form");
-// 				f.submit();
 				dialog.find('iframe').get(0).contentWindow.submitForm(dialog, rolelist_grid, parent.$,params);
 			}
 		} ]

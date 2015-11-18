@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Formula;
+
 import com.hjh.she.model.base.AuditEntityBean;
 
 /**
@@ -95,6 +97,10 @@ public class User extends AuditEntityBean {
 
 	@Column(name = "LAST_VISIT")
 	private Timestamp lastVisit;
+	// (select count(account.ID) from EP_R_ROLE_ACCOUNTS account where
+	// account.LOGIN_ID=LOGIN_ID)
+	@Formula(value = "2")
+	private Long roleNum;// 角色
 
 	public String getUserId() {
 		return userId;
@@ -286,6 +292,14 @@ public class User extends AuditEntityBean {
 
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+
+	public Long getRoleNum() {
+		return roleNum;
+	}
+
+	public void setRoleNum(Long roleNum) {
+		this.roleNum = roleNum;
 	}
 
 }

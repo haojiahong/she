@@ -26,15 +26,7 @@ public class EzPermTreeGridAction extends BaseAction<Object> {
 	public String retrieve() throws Exception {
 		List<Permission> permParentList = permissionService.retrieveParentPermLs();
 		for (Permission perm : permParentList) {
-			EzPermTreeBean treeBean = new EzPermTreeBean();
-			treeBean.setId(perm.getPermissionId());
-			treeBean.setText(perm.getName());
-			treeBean.setIconCls(perm.getIconcls());
-			treeBean.setHavaSub(perm.getHaveSub());
-			if (Constants.YES.equals(perm.getHaveSub())) {
-				treeBean.setState("closed");
-				this.initChild(treeBean, treeBean.getId());
-			}
+			EzPermTreeBean treeBean = initTreeBean(perm);
 			ezTree.add(treeBean);
 		}
 		OutputJson(ezTree);
@@ -42,24 +34,32 @@ public class EzPermTreeGridAction extends BaseAction<Object> {
 	}
 
 	private void initChild(EzPermTreeBean zt, String id) {
-
 		List<Permission> permSubList = permissionService.retrieveSubPermLs(id);
-
 		for (Permission sub : permSubList) {
-			EzPermTreeBean treeBean = new EzPermTreeBean();
-			treeBean.setId(sub.getPermissionId());
-			treeBean.setText(sub.getName());
-			treeBean.setIconCls(sub.getIconcls());
-			// treeBean.setHavaSub(sub.getHaveSub());
-			if (Constants.YES.equals(sub.getHaveSub())) {
-				treeBean.setState("closed");
-
-				this.initChild(treeBean, treeBean.getId());
-			}
+			EzPermTreeBean treeBean = initTreeBean(sub);
 			zt.getChildren().add(treeBean);
-
 		}
+	}
 
+	private EzPermTreeBean initTreeBean(Permission perm) {
+		EzPermTreeBean treeBean = new EzPermTreeBean();
+		treeBean.setId(perm.getPermissionId());
+		treeBean.setText(perm.getName());
+		treeBean.setIconCls(perm.getIconcls());
+		treeBean.setHavaSub(perm.getHaveSub());
+		treeBean.setName(perm.getName());// 名称
+		treeBean.setPname(perm.getPname());// 父权限名称
+		treeBean.setSortNum(perm.getSortNum());// 排序号
+		treeBean.setUrl(perm.getUrl());// 地址
+		treeBean.setMyid(perm.getMyid());// 权限编码
+		treeBean.setType(perm.getType());// 权限类型
+		treeBean.setIsused(perm.getIsused());// 是否使用
+		treeBean.setDescription(perm.getDescription());// 描述
+		if (Constants.YES.equals(perm.getHaveSub())) {
+			treeBean.setState("closed");
+			this.initChild(treeBean, treeBean.getId());
+		}
+		return treeBean;
 	}
 
 	public List<EzPermTreeBean> getEzTree() {

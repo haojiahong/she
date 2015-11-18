@@ -16,7 +16,7 @@ import com.hjh.she.viewModel.MenuModel;
 public class LoginServiceImpl implements LoginService {
 
 	@Override
-	public List<MenuModel> findMenuList() throws Exception{
+	public List<MenuModel> findMenuList() throws Exception {
 		ShiroUser user = CommonUtil.getCurrendUser();
 		System.out.println("user====>" + user);
 		String sql = null;
@@ -34,7 +34,6 @@ public class LoginServiceImpl implements LoginService {
 					+ "WHERE rp.STATUS='A' and r.STATUS='A' and ur.STATUS='A' and u.STATUS='A' and p.STATUS='A' and p.TYPE='F' and p.ISUSED='Y'\n"
 					+ "and u.USER_ID=" + user.getUserId() + "";
 		}
-		// List listmenu = publicDaoSQL.findBySQL(sql);
 		List listmenu = JPAUtil.executeNativeQuery(sql);
 		List<MenuModel> parentList = new ArrayList<MenuModel>();
 		for (Object object : listmenu) {

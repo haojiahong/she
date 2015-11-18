@@ -11,7 +11,6 @@ public class EzPermTreeBean extends EasyTree {
 	private String name;// 名称
 	private String pname;// 父名称
 	private Integer sortNum;// 序号
-	private String iconcls;// 图标
 	private String url;// 菜单路径
 	private String myid;// 菜单编码
 	private String type;// 菜单类型
@@ -42,14 +41,6 @@ public class EzPermTreeBean extends EasyTree {
 
 	public void setSortNum(Integer sortNum) {
 		this.sortNum = sortNum;
-	}
-
-	public String getIconcls() {
-		return iconcls;
-	}
-
-	public void setIconcls(String iconcls) {
-		this.iconcls = iconcls;
 	}
 
 	public String getUrl() {

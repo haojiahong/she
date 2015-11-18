@@ -1,5 +1,5 @@
 (function($) {
-	// 全局系统对象
+	// 设置了一个jqueryUtil的全局系统对象
 	window['jqueryUtil'] = {};
 
 	var easyuiErrorFunction = function(XMLHttpRequest) {
