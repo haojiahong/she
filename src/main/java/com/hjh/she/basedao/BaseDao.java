@@ -47,21 +47,10 @@ public class BaseDao implements IDAO {
 				jpql = JpqlUtil.addSortParam(jpql, sortParams);
 			}
 			Query query = getSession().createQuery(jpql);
-			// if (ThreadLocalStore.ifUseQueryCache()) {
-			// query.setCacheable(true);
-			// }
 
 			QueryParamList allParams = new QueryParamList();
 			allParams.addParamList(params);
-			// allParams.addParamList(extParams);
-			// if (pageInfo != null) {->wxl
-			// String querySql =
-			// convertJpqlToSql(JpqlUtil.deleteOuterOrderBy(tempjpql));
-			// QueryParamList newParams = JpqlUtil.getParamInfo(tempjpql,
-			// allParams);
-			// querySql = JpqlUtil.replaceSqlParam(querySql, newParams);
-			// pageQuery = getSession().createSQLQuery(querySql);
-			// }
+
 			setQueryParamList(query, allParams);
 			// 处理分页
 			if (pageInfo != null) {
@@ -122,10 +111,16 @@ public class BaseDao implements IDAO {
 				}
 			}
 			returnList = query.list();
-		} catch (Throwable cause) {
-			new Exception("采用JPQL查询出错!" + cause.getMessage(), cause);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return returnList;
+	}
+
+	@Override
+	public <T> List<T> find(String jpql) {
+		Query query = getSession().createQuery(jpql);
+		return query.list();
 	}
 
 	public List executeNativeQuery(String nativeSql) throws Exception {
@@ -139,8 +134,8 @@ public class BaseDao implements IDAO {
 			Query query = getSession().createSQLQuery(nativeSql);
 			setQueryParamList(query, params);
 			returnList = query.list();
-		} catch (Throwable cause) {
-			new Exception("执行本地查询出错!" + cause.getMessage(), cause);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 		return returnList;
@@ -150,7 +145,7 @@ public class BaseDao implements IDAO {
 		if (query != null && paramLs != null && paramLs.getParams().size() > 0) {
 			List<QueryParam> list = paramLs.getParams();
 			for (int i = 0; i < list.size(); i++) {
-				QueryParam param = (QueryParam) list.get(i);
+				QueryParam param = list.get(i);
 				if (param == null) {
 					continue;
 				}
@@ -225,9 +220,6 @@ public class BaseDao implements IDAO {
 			// 附加查询条件
 			String countJpql = JpqlUtil.deleteOuterOrderBy(jpql);
 			Query pageQuery = getSession().createQuery(countJpql);
-			if (JPAUtil.ifUseQueryCache()) {
-				pageQuery.setCacheable(true);
-			}
 			setQueryParamList(pageQuery, params);
 			ScrollableResults scrollCursor = pageQuery.scroll(ScrollMode.SCROLL_INSENSITIVE);
 			scrollCursor.last();// 使游标移动到最后一行

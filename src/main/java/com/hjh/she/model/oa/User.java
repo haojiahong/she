@@ -1,12 +1,16 @@
 package com.hjh.she.model.oa;
 
 import java.sql.Timestamp;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.apache.struts2.json.annotations.JSON;
 import org.hibernate.annotations.Formula;
 
 import com.hjh.she.model.base.AuditEntityBean;
@@ -84,7 +88,7 @@ public class User extends AuditEntityBean {
 	private Long isOnline;
 
 	@Column(name = "GENDER")
-	private String gender;
+	private Long gender;
 
 	@Column(name = "DESCRIPTION")
 	private String description;
@@ -97,10 +101,12 @@ public class User extends AuditEntityBean {
 
 	@Column(name = "LAST_VISIT")
 	private Timestamp lastVisit;
-	// (select count(account.ID) from EP_R_ROLE_ACCOUNTS account where
-	// account.LOGIN_ID=LOGIN_ID)
-	@Formula(value = "2")
-	private Long roleNum;// 角色
+
+	@Formula(value = "(select count(our.ID) from oa_user_role our where our.USER_ID=USER_ID)")
+	private Long roleNum;// 对应角色数量
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+	private List<UserRoleRela> userRoleRelaLs;
 
 	public String getUserId() {
 		return userId;
@@ -286,20 +292,29 @@ public class User extends AuditEntityBean {
 		this.isOnline = isOnline;
 	}
 
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-
 	public Long getRoleNum() {
 		return roleNum;
 	}
 
 	public void setRoleNum(Long roleNum) {
 		this.roleNum = roleNum;
+	}
+
+	public Long getGender() {
+		return gender;
+	}
+
+	public void setGender(Long gender) {
+		this.gender = gender;
+	}
+
+	@JSON(serialize = false)
+	public List<UserRoleRela> getUserRoleRelaLs() {
+		return userRoleRelaLs;
+	}
+
+	public void setUserRoleRelaLs(List<UserRoleRela> userRoleRelaLs) {
+		this.userRoleRelaLs = userRoleRelaLs;
 	}
 
 }

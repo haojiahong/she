@@ -17,7 +17,6 @@
 <form id="useradd_form" method="post" action="${pageContext.request.contextPath}/oa/userAction!save.do">
 	<input type="hidden" id="userId"  name="userId" value="${user.userId}"/>
 	<input type="hidden" id="password" name="password" value="${user.password }"/>
-	<!--这个必须写，不写的话，表单提交后，myid就别清空了，modeldriven惹得事。  -->
 	<input type="hidden" id="myid" name="myid" value="${user.myid }"/>
 	<input type="hidden" id="status" name="status" value="${user.status }"/>
 		<table class="table">
@@ -34,8 +33,7 @@
 			</tr>
 			<tr>
 				<th>性别</th>
-				<td><input name="gender" value=""${user.gender } 
-					class="easyui-combobox  formWidth"
+				<td><input name="gender"  value="${user.gender}" class="easyui-combobox  formWidth"
 					data-options="url:'${pageContext.request.contextPath}/oa/userAction!genderDropList.do'" /></td>
 				<th>联系电话</th>
 				<td><input name="tel" value="${user.tel }" 
@@ -43,17 +41,7 @@
 					data-options="required:true,validType:'length[0,30]'" /></td>
 				
 			</tr>
-			<!-- <tr>
-				<th>所属部门</th>
-				<td><input name="orgId" value="" 
-					class="easyui-combotree  formWidth"
-					data-options="url:'ezOrgTreeGridAction.do',required:true" /></td>
-				<th>角色</th>
-				<td><input name="roleId" value="" 
-					class="easyui-combobox  formWidth"	 	
-					data-options="url:'userAction!roleDroplist.do',required:true" /></td>
-				
-			</tr> -->
+			
 			<tr>
 				<th>E-mail</th>
 				<td><input name="email" value="${user.email }" 

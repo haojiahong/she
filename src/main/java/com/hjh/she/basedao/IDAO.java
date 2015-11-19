@@ -69,4 +69,6 @@ public abstract interface IDAO {
 	public abstract List executeNativeQuery(String paramString, QueryParamList paramQueryParamList) throws Exception;
 
 	public abstract List executeNativeQuery(String paramString) throws Exception;
+
+	public abstract <T> List<T> find(String jpql);
 }

@@ -116,6 +116,10 @@ function delRole(roleId) {
 	});
 }
 
+function submitSetRoleForm(){
+	
+}
+
 </script>
 </body>
 </html>

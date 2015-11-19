@@ -136,12 +136,18 @@
 	
 	function ezEditFromatForSetRole(roleNum,row,index){
 		var str = "";
-		str += jqueryUtil.formatString('<a onclick="editUser(\'{0}\');" style="cursor: pointer;text-decoration:underline;">{1}</a>', row.userId , roleNum);
+		str += jqueryUtil.formatString('<a onclick="setRole(\'{0}\');" style="cursor: pointer;text-decoration:underline;">{1}</a>', row.userId , roleNum);
 		return str;
 	}
 	
 	function setRole(userId){
-		
+		var setrole_dialog = parent.jqueryUtil.modalDialog({
+			title : '设置角色',
+			width : 600,
+			height : 400,
+			url : '${pageContext.request.contextPath}/shejsp/oa/setrolelist.jsp?userId='+userId,
+			
+		});
 	}
 </script>
 </body>

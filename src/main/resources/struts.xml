@@ -32,7 +32,7 @@
 	<constant name="struts.convention.default.parent.package"
 		value="default-package" />
 
-	<package name="default-package" extends="convention-default">
+	<package name="default-package" extends="convention-default,json-default">
 		<global-results>
 			<result name="noAuth">/shejsp/error/noAuth.jsp</result>
 			<result name="noSession">/shejsp/error/noSession.jsp</result>

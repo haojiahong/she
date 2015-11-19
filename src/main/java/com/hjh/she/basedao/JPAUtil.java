@@ -7,39 +7,8 @@ import com.hjh.she.model.base.PageInfo;
 import com.hjh.she.model.base.QueryParamList;
 import com.hjh.she.model.base.SortParamList;
 
+@SuppressWarnings("unchecked")
 public class JPAUtil {
-	private static ThreadLocal<Boolean> useQueryCache = new ThreadLocal<Boolean>();// 启用查询缓存
-	private static ThreadLocal<Boolean> rightFilter = new ThreadLocal<Boolean>();// 启用权限过滤
-
-	public static boolean ifUseQueryCache() {
-		if (useQueryCache.get() == null)
-			return false;
-		return useQueryCache.get();
-
-	}
-
-	public static void enableCache() {
-		useQueryCache.set(true);
-	}
-
-	public static void disableCache() {
-		useQueryCache.set(false);
-	}
-
-	public static boolean ifUseFilter() {
-		if (rightFilter.get() == null)
-			return true;
-		return rightFilter.get();
-
-	}
-
-	public static void enableRight() {
-		rightFilter.set(true);
-	}
-
-	public static void disableRight() {
-		rightFilter.set(false);
-	}
 
 	// 这是第一种拿到applicationContext的方法。(通过applicationContextAware)
 	// 静态属性，spring初始化MyApplicationContextUtil的时候，将applicationContext属性set到这里面了。
@@ -71,15 +40,17 @@ public class JPAUtil {
 	 * @param pageInfo
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
+
 	public static <T> List<T> find(String jpql, QueryParamList params, SortParamList sortParams, PageInfo pageInfo) {
-		// IDAO dao = null;
-		// try {
-		// dao = (IDAO) getCtx().getBean("baseDao");
-		// } catch (BeansException e) {
-		// e.printStackTrace();
-		// }
 		return dao.find(jpql, params, sortParams, pageInfo);
+	}
+
+	public static <T> List<T> find(String jpql) {
+		return dao.find(jpql);
+	}
+
+	public static <T> List<T> find(String jpql, QueryParamList params) {
+		return find(jpql, params, null, null);
 	}
 
 	public static <T> List<T> executeNativeQuery(String nativeSql) throws Exception {
@@ -137,6 +108,9 @@ public class JPAUtil {
 		dao.remove(clazz, id);
 	}
 
+	/**
+	 * 缓存和数据库同步
+	 */
 	public static void flush() {
 		dao.flush();
 	}

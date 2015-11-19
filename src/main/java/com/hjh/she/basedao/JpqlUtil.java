@@ -46,29 +46,23 @@ public class JpqlUtil {
 		return jpql;
 	}
 
-	//增加排序
-	public static String addSortParam(String jpql, SortParamList sortParams)
-			throws Exception {
+	// 增加排序
+	public static String addSortParam(String jpql, SortParamList sortParams) throws Exception {
 		if (sortParams != null && sortParams.getParams().size() > 0) {
 			List list = sortParams.getParams();
 			for (int i = 0; i < list.size(); i++) {
 				SortParam param = (SortParam) list.get(i);
-				if (param.getSortProperty().contains(".")){
+				if (param.getSortProperty().contains(".")) {
 					throw new Exception("列表排序发生错误。");
 				}
 				if (i == 0 && hasOrderBy(jpql) < 0)
-					jpql = (new StringBuilder(String.valueOf(jpql))).append(
-							" ORDER BY ").toString();
+					jpql = (new StringBuilder(String.valueOf(jpql))).append(" ORDER BY ").toString();
 				else
-					jpql = (new StringBuilder(String.valueOf(jpql))).append(
-							" , ").toString();
+					jpql = (new StringBuilder(String.valueOf(jpql))).append(" , ").toString();
 				jpql = (new StringBuilder(String.valueOf(jpql)))
-						.append(param.getAlias() != null
-								&& !"".equals(param.getAlias().trim()) ? (new StringBuilder(
-								String.valueOf(param.getAlias()))).append(".")
-								.toString() : "")
-						.append(param.getSortProperty()).append(" ")
-						.append(param.getSortType()).toString();
+						.append(param.getAlias() != null && !"".equals(param.getAlias().trim()) ? (new StringBuilder(
+								String.valueOf(param.getAlias()))).append(".").toString() : "")
+						.append(param.getSortProperty()).append(" ").append(param.getSortType()).toString();
 			}
 
 		}

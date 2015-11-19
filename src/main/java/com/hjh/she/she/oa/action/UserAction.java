@@ -29,7 +29,7 @@ public class UserAction extends BaseAction<User> {
 	private List<EasyUIDrop> genderDropList = new ArrayList<EasyUIDrop>();// 性别下拉
 
 	private String userNameSch;// 用户名称查询
-	private String userId;
+	private String roleIds;// 设置角色时，选中的角色id
 	private User user = new User();
 
 	public String retrieve() throws Exception {
@@ -49,8 +49,8 @@ public class UserAction extends BaseAction<User> {
 		user = userService.add();
 		return "editUser";
 	}
-	
-	public String delUser() throws Exception{
+
+	public String delUser() throws Exception {
 		userService.remove(getModel());
 		SheJson json = new SheJson();
 		json.setMessage("删除成功");
@@ -62,6 +62,42 @@ public class UserAction extends BaseAction<User> {
 		userService.save(getModel());
 		SheJson json = new SheJson();
 		json.setMessage("保存成功");
+		OutputJson(json, Constants.TEXT_TYPE_PLAIN);
+		return null;
+	}
+
+	/**
+	 * 查询用户已经设置的角色
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String setRoleRetrieve() throws Exception {
+		GridModel roleGridModel = new GridModel();
+		roleGridModel.setRows(userService.setRoleRetrieve(getModel().getUserId(), getSortInfo(), getPageInfo()));
+		roleGridModel.setTotal(getPageInfo().getAllRowNum());
+		OutputJson(roleGridModel);
+		return null;
+	}
+
+	/**
+	 * 查询用户未拥有的角色,从而可设置成新角色
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String setNewRoleRetrieve() throws Exception {
+		GridModel newRoleGridModel = new GridModel();
+		newRoleGridModel.setRows(userService.setNewRoleRetrieve(getModel().getUserId(), getSortInfo(), getPageInfo()));
+		newRoleGridModel.setTotal(getPageInfo().getAllRowNum());
+		OutputJson(newRoleGridModel);
+		return null;
+	}
+
+	public String setRoles() throws Exception {
+		userService.setRoles(roleIds, getModel().getUserId());
+		SheJson json = new SheJson();
+		json.setMessage("设置成功");
 		OutputJson(json, Constants.TEXT_TYPE_PLAIN);
 		return null;
 	}
@@ -81,14 +117,6 @@ public class UserAction extends BaseAction<User> {
 		this.userNameSch = userNameSch;
 	}
 
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
 	public User getUser() {
 		return user;
 	}
@@ -103,6 +131,14 @@ public class UserAction extends BaseAction<User> {
 
 	public void setGenderDropList(List<EasyUIDrop> genderDropList) {
 		this.genderDropList = genderDropList;
+	}
+
+	public String getRoleIds() {
+		return roleIds;
+	}
+
+	public void setRoleIds(String roleIds) {
+		this.roleIds = roleIds;
 	}
 
 }

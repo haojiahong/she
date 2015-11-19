@@ -23,8 +23,8 @@ private GenderDrop() {
 
 	private static List<EasyUIDrop> genGenderList() {
 		List<EasyUIDrop> dropLs = new ArrayList<EasyUIDrop>();
-		dropLs.add(new EasyUIDrop(1L + "", "男"));
-		dropLs.add(new EasyUIDrop(2L + "", "女"));
+		dropLs.add(new EasyUIDrop(1L, "男"));
+		dropLs.add(new EasyUIDrop(2L, "女"));
 		
 		return dropLs;
 	}
