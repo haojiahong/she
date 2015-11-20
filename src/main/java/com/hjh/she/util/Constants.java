@@ -54,7 +54,7 @@ public class Constants {
 	public static final String LOGS_TB_NAME = "Log";
 	public static final String FILE_SUFFIX_SQL = ".sql";
 	public static final String FILE_SUFFIX_ZIP = ".zip";
-	
+
 	/**
 	 * 常量Yes “Y”
 	 */
@@ -65,8 +65,4 @@ public class Constants {
 	 */
 	public static final String NO = "N";
 
-	/**
-	 * easyUI树表的根节点(部门管理树表 )
-	 */
-	public static final Long TREE_ROOT = -1L;
 }

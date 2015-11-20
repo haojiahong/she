@@ -9,6 +9,7 @@ package com.hjh.she.viewModel.eztree;
  */
 public class EzPermTreeBean extends EasyTree {
 	private String name;// 名称
+	private String pid;// 父id
 	private String pname;// 父名称
 	private Integer sortNum;// 序号
 	private String url;// 菜单路径
@@ -89,5 +90,13 @@ public class EzPermTreeBean extends EasyTree {
 
 	public void setHavaSub(String havaSub) {
 		this.havaSub = havaSub;
+	}
+
+	public String getPid() {
+		return pid;
+	}
+
+	public void setPid(String pid) {
+		this.pid = pid;
 	}
 }

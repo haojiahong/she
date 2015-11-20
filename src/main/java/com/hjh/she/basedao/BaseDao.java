@@ -3,10 +3,12 @@ package com.hjh.she.basedao;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.ScrollMode;
 import org.hibernate.ScrollableResults;
@@ -119,8 +121,14 @@ public class BaseDao implements IDAO {
 
 	@Override
 	public <T> List<T> find(String jpql) {
-		Query query = getSession().createQuery(jpql);
-		return query.list();
+		List<T> returnList = new ArrayList<T>();
+		try {
+			Query query = getSession().createQuery(jpql);
+			returnList = query.list();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		return returnList;
 	}
 
 	public List executeNativeQuery(String nativeSql) throws Exception {
@@ -180,7 +188,13 @@ public class BaseDao implements IDAO {
 
 	@Override
 	public <T> T loadById(Class<T> clazz, Serializable id) {
-		return (T) getSession().load(clazz, id);
+		T t = null;
+		try {
+			t = (T) getSession().load(clazz, id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return t;
 	}
 
 	@Override
@@ -191,12 +205,20 @@ public class BaseDao implements IDAO {
 				((AuditEntityBean) t).setModifyer(CommonUtil.getCurrendUser().getAccount());
 			}
 		}
-		getSession().saveOrUpdate(t);
+		try {
+			getSession().saveOrUpdate(t);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	};
 
 	@Override
 	public <T> void refresh(T t) {
-		getSession().refresh(t);
+		try {
+			getSession().refresh(t);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	};
 
 	@Override
@@ -205,12 +227,36 @@ public class BaseDao implements IDAO {
 	}
 
 	public <T> void remove(T t) {
-		getSession().delete(t);
+		try {
+			getSession().delete(t);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public <T> void remove(Collection<T> entities) {
+		try {
+			if (entities != null && entities.size() > 0) {
+				Iterator<T> iterator = entities.iterator();
+				while (iterator.hasNext()) {
+					T t = iterator.next();
+					getSession().delete(t);
+				}
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void flush() {
-		getSession().flush();
+		try {
+			getSession().flush();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override

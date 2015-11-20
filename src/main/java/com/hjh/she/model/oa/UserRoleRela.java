@@ -8,8 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.apache.struts2.json.annotations.JSON;
-
+import com.alibaba.fastjson.annotation.JSONField;
 import com.hjh.she.model.base.AuditEntityBean;
 
 /**
@@ -78,7 +77,7 @@ public class UserRoleRela extends AuditEntityBean {
 		this.status = status;
 	}
 
-	@JSON(serialize = false)
+	@JSONField(serialize = false)
 	public User getUser() {
 		return user;
 	}
@@ -87,7 +86,7 @@ public class UserRoleRela extends AuditEntityBean {
 		this.user = user;
 	}
 
-	@JSON(serialize = false)
+	@JSONField(serialize = false)
 	public Role getRole() {
 		return role;
 	}

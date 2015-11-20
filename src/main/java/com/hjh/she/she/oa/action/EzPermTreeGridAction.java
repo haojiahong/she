@@ -48,6 +48,7 @@ public class EzPermTreeGridAction extends BaseAction<Object> {
 		treeBean.setIconCls(perm.getIconcls());
 		treeBean.setHavaSub(perm.getHaveSub());
 		treeBean.setName(perm.getName());// 名称
+		treeBean.setPid(perm.getPid());
 		treeBean.setPname(perm.getPname());// 父权限名称
 		treeBean.setSortNum(perm.getSortNum());// 排序号
 		treeBean.setUrl(perm.getUrl());// 地址

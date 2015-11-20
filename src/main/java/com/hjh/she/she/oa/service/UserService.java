@@ -48,4 +48,12 @@ public interface UserService {
 	 */
 	public void setRoles(String roleIds, String userId);
 
+	/**
+	 * 删除用户角色
+	 * 
+	 * @param roleIds
+	 * @param userId
+	 */
+	public void delRoles(String roleIds, String userId) throws Exception;
+
 }

@@ -37,7 +37,6 @@
 				<tr>
 					<td><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="add()" >添加</a> </td>
 					<td><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="delUsers()">删除</a></td>
-					<td><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-save',plain:true" onclick="saveUsers()">保存</a></td>
 				</tr>
 			</table>
 		</tr>
@@ -57,6 +56,16 @@ function reload() {
 	});
 }
 
+function ezEditFromat(roleId,row,index){
+	var str = "";
+	str += jqueryUtil.formatString('<img title="编辑" src="{1}" onclick="showRole(\'{0}\');"/>', roleId,'${pageContext.request.contextPath}/cssstyle/images/extjs_icons/pencil.png');
+	str += "&nbsp;";
+	str += jqueryUtil.formatString('<img title="删除" src="{1}" onclick="delRole(\'{0}\');"/>', roleId,'${pageContext.request.contextPath}/cssstyle/images/extjs_icons/cancel.png');
+	str += "&nbsp;";
+	str += jqueryUtil.formatString('<img title="设置权限" src="{1}" onclick="setPermission(\'{0}\');"/>', roleId,'${pageContext.request.contextPath}/cssstyle/images/extjs_icons/lock/lock_edit.png');
+	return str;
+}
+
 function add() {
 	var params = {roleNameSch:$("#roleNameSch").val()};
 	var add_dialog = parent.jqueryUtil.modalDialog({
@@ -71,16 +80,6 @@ function add() {
 			}
 		}]
 	});
-}
-
-function ezEditFromat(roleId,row,index){
-	var str = "";
-	str += jqueryUtil.formatString('<img title="编辑" src="{1}" onclick="showRole(\'{0}\');"/>', roleId,'${pageContext.request.contextPath}/cssstyle/images/extjs_icons/pencil.png');
-	str += "&nbsp;";
-	str += jqueryUtil.formatString('<img title="删除" src="{1}" onclick="delRole(\'{0}\');"/>', roleId,'${pageContext.request.contextPath}/cssstyle/images/extjs_icons/cancel.png');
-	str += "&nbsp;";
-	str += jqueryUtil.formatString('<img title="设置权限" src="{1}" onclick="setPrivilege(\'{0}\');"/>', roleId,'${pageContext.request.contextPath}/cssstyle/images/extjs_icons/lock/lock_edit.png');
-	return str;
 }
 
 function showRole(roleId){
@@ -116,8 +115,16 @@ function delRole(roleId) {
 	});
 }
 
-function submitSetRoleForm(){
-	
+function setPermission(roleId){
+	var setPermission_dialog = parent.jqueryUtil.modalDialog({
+		title : '设置权限',
+		width : 800,
+		height : 400,
+		url : '${pageContext.request.contextPath}/shejsp/oa/setpermissionlist.jsp?roleId='+roleId,
+		onClose : function(){
+			reload();
+		}
+	});
 }
 
 </script>

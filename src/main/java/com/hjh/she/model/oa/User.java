@@ -10,9 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.apache.struts2.json.annotations.JSON;
 import org.hibernate.annotations.Formula;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.hjh.she.model.base.AuditEntityBean;
 
 /**
@@ -308,7 +308,7 @@ public class User extends AuditEntityBean {
 		this.gender = gender;
 	}
 
-	@JSON(serialize = false)
+	@JSONField(serialize = false)
 	public List<UserRoleRela> getUserRoleRelaLs() {
 		return userRoleRelaLs;
 	}

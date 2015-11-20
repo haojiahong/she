@@ -146,7 +146,9 @@
 			width : 600,
 			height : 400,
 			url : '${pageContext.request.contextPath}/shejsp/oa/setrolelist.jsp?userId='+userId,
-			
+			onClose : function(){
+				reload();
+			}
 		});
 	}
 </script>

@@ -49,9 +49,9 @@ var submitSetNewRoleForm = function($dialog, $grid, $pjq,params) {
 						userId : userId
 					   },
 				dataType : "json",
-				success : function(data) {
-					if (result) {
-						$grid.datagrid('load');
+				success : function(result) {
+					if (result.status) {
+						$grid.datagrid('reload');
 						$dialog.dialog('destroy');
 						$pjq.messager.alert('提示', result.message,'info');
 					} else {

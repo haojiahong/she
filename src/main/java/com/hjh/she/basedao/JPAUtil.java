@@ -1,6 +1,7 @@
 package com.hjh.she.basedao;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
 import com.hjh.she.model.base.PageInfo;
@@ -106,6 +107,10 @@ public class JPAUtil {
 	 */
 	public static <T> void remove(Class<T> clazz, Serializable id) {
 		dao.remove(clazz, id);
+	}
+
+	public static <T> void remove(Collection<T> entities) {
+		dao.remove(entities);
 	}
 
 	/**

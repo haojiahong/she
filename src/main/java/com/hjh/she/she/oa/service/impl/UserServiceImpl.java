@@ -11,8 +11,10 @@ import com.hjh.she.model.base.SortParam;
 import com.hjh.she.model.base.SortParamList;
 import com.hjh.she.model.oa.Role;
 import com.hjh.she.model.oa.User;
+import com.hjh.she.model.oa.UserRoleRela;
 import com.hjh.she.she.oa.service.UserService;
 import com.hjh.she.util.CommonUtil;
+import com.hjh.she.util.Constants;
 
 @Component("userService")
 public class UserServiceImpl implements UserService {
@@ -94,9 +96,30 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void setRoles(String roleIds, String userId) {
-		String oldJpql = "select rela from UserRoleRela rela where rela.userId =:userId";
-		QueryParamList oldParams = new QueryParamList();
-		oldParams.addParam("userId", userId);
-		
+		List<String> roleIdLs = CommonUtil.paraseStrs(roleIds);
+		if (roleIdLs.size() > 0) {
+			for (String roleId : roleIdLs) {
+				UserRoleRela rela = new UserRoleRela();
+				rela.setId(CommonUtil.genUUID());
+				rela.setUserId(userId);
+				rela.setRoleId(roleId);
+				rela.setStatus(Constants.PERSISTENCE_STATUS);
+				JPAUtil.create(rela);
+			}
+		}
+	}
+
+	@Override
+	public void delRoles(String roleIds, String userId) {
+		List<String> roleIdLs = CommonUtil.paraseStrs(roleIds);
+		String jpql = "select rela from UserRoleRela rela where rela.roleId in (:roleIdLs) and rela.userId =:userId";
+		QueryParamList params = new QueryParamList();
+		params.addParam("roleIdLs", roleIdLs);
+		params.addParam("userId", userId);
+		List<UserRoleRela> relaLs = JPAUtil.find(jpql, params);
+		if (relaLs.size() > 0) {
+			JPAUtil.remove(relaLs);
+		}
+
 	}
 }

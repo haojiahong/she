@@ -1,6 +1,7 @@
 package com.hjh.she.basedao;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
 import com.hjh.she.model.base.PageInfo;
@@ -55,6 +56,13 @@ public abstract interface IDAO {
 	 * @param id
 	 */
 	public abstract <T> void remove(Class<T> clazz, Serializable id);
+
+	/**
+	 * 批量删除
+	 * 
+	 * @param entities
+	 */
+	public abstract <T> void remove(Collection<T> entities);
 
 	public abstract void flush();
 

@@ -94,10 +94,26 @@ public class UserAction extends BaseAction<User> {
 		return null;
 	}
 
+	/**
+	 * 设置新添加的角色
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
 	public String setRoles() throws Exception {
 		userService.setRoles(roleIds, getModel().getUserId());
 		SheJson json = new SheJson();
+		json.setStatus(true);
 		json.setMessage("设置成功");
+		OutputJson(json, Constants.TEXT_TYPE_PLAIN);
+		return null;
+	}
+
+	public String delRoles() throws Exception {
+		userService.delRoles(roleIds, getModel().getUserId());
+		SheJson json = new SheJson();
+		json.setStatus(true);
+		json.setMessage("删除成功");
 		OutputJson(json, Constants.TEXT_TYPE_PLAIN);
 		return null;
 	}
