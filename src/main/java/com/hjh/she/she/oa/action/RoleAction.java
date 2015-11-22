@@ -23,8 +23,8 @@ public class RoleAction extends BaseAction<Role> {
 	private RoleService roleService;
 
 	private String roleNameSch;// 用户名称查询
-	private String roleId;
 	private Role role = new Role();
+	private String permissionIds;// 设置权限时选中的权限ids
 
 	public String retrieve() throws Exception {
 		GridModel gridModel = new GridModel();
@@ -60,6 +60,21 @@ public class RoleAction extends BaseAction<Role> {
 		return null;
 	}
 
+	public String getRolePermission() {
+		OutputJson(roleService.getRolePermission(getModel().getRoleId()));
+		return null;
+	}
+
+	// 为角色设置选中的权限
+	public String savePermission() {
+		roleService.savePermission(getModel().getRoleId(), permissionIds);
+		SheJson json = new SheJson();
+		json.setStatus(true);
+		json.setMessage("设置权限成功");
+		OutputJson(json, Constants.TEXT_TYPE_PLAIN);
+		return null;
+	}
+
 	public String getRoleNameSch() {
 		return roleNameSch;
 	}
@@ -68,20 +83,20 @@ public class RoleAction extends BaseAction<Role> {
 		this.roleNameSch = roleNameSch;
 	}
 
-	public String getRoleId() {
-		return roleId;
-	}
-
-	public void setRoleId(String roleId) {
-		this.roleId = roleId;
-	}
-
 	public Role getRole() {
 		return role;
 	}
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+
+	public String getPermissionIds() {
+		return permissionIds;
+	}
+
+	public void setPermissionIds(String permissionIds) {
+		this.permissionIds = permissionIds;
 	}
 
 }

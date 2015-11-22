@@ -5,9 +5,7 @@
     <jsp:include page="/shejsp/sys/inc.jsp"></jsp:include>
 </head>
 <body>
-	<table id="roleTable"  class="easyui-datagrid" pagination="true"  rownumbers="true"
-		data-options="url:'${pageContext.request.contextPath}/oa/roleAction!retrieve.do',toolbar:'#roletoolbar',
-		singleSelect:true,fit:true,striped:true">
+	<table id="roleTable">
 				<thead>
 					<tr>
 						<th field="roleId" data-options="formatter:ezEditFromat" width="100" align="center">操作</th>
@@ -46,7 +44,13 @@
 <script type="text/javascript">
 $(function(){
 	 rolelist_grid = $('#roleTable').datagrid({
-	
+		 pagination:true,
+		 rownumbers:true,
+		 url:'${pageContext.request.contextPath}/oa/roleAction!retrieve.do',
+		 toolbar:'#roletoolbar',
+		 singleSelect:true,
+		 fit:true,
+		 striped:true
 	});
 });
 
@@ -123,7 +127,13 @@ function setPermission(roleId){
 		url : '${pageContext.request.contextPath}/shejsp/oa/setpermissionlist.jsp?roleId='+roleId,
 		onClose : function(){
 			reload();
-		}
+		},
+		buttons : [ {
+			text : 	'保存',
+			handler : function() {
+				setPermission_dialog.find('iframe').get(0).contentWindow.submitSetPermissionForm(setPermission_dialog, rolelist_grid, parent.$,null);
+			}
+		} ]
 	});
 }
 

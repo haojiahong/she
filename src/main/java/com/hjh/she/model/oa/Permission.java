@@ -12,8 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.apache.struts2.json.annotations.JSON;
-
+import com.alibaba.fastjson.annotation.JSONField;
 import com.hjh.she.model.base.AuditEntityBean;
 
 /**
@@ -80,6 +79,9 @@ public class Permission extends AuditEntityBean {
 
 	@OneToMany(mappedBy = "upPermission", cascade = CascadeType.REMOVE)
 	private List<Permission> subPermissionLs;
+
+	@OneToMany(mappedBy = "permission", cascade = CascadeType.REMOVE)
+	private List<RolePermissionRela> rolePermissionRelaLs;// 角色权限关系表
 
 	public String getPermissionId() {
 		return permissionId;
@@ -193,7 +195,7 @@ public class Permission extends AuditEntityBean {
 		this.haveSub = haveSub;
 	}
 
-	@JSON(serialize = false)
+	@JSONField(serialize = false)
 	public Permission getUpPermission() {
 		return upPermission;
 	}
@@ -202,13 +204,22 @@ public class Permission extends AuditEntityBean {
 		this.upPermission = upPermission;
 	}
 
-	@JSON(serialize = false)
+	@JSONField(serialize = false)
 	public List<Permission> getSubPermissionLs() {
 		return subPermissionLs;
 	}
 
 	public void setSubPermissionLs(List<Permission> subPermissionLs) {
 		this.subPermissionLs = subPermissionLs;
+	}
+
+	@JSONField(serialize = false)
+	public List<RolePermissionRela> getRolePermissionRelaLs() {
+		return rolePermissionRelaLs;
+	}
+
+	public void setRolePermissionRelaLs(List<RolePermissionRela> rolePermissionRelaLs) {
+		this.rolePermissionRelaLs = rolePermissionRelaLs;
 	}
 
 }

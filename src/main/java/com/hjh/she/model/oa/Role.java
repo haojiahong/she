@@ -43,7 +43,10 @@ public class Role extends AuditEntityBean {
 	private Integer sortNum;
 
 	@OneToMany(mappedBy = "role", cascade = CascadeType.REMOVE)
-	private List<UserRoleRela> userRoleRelaLs;
+	private List<UserRoleRela> userRoleRelaLs;// 用户角色关系表
+
+	@OneToMany(mappedBy = "role", cascade = CascadeType.REMOVE)
+	private List<RolePermissionRela> rolePermissionRelaLs;// 角色权限关系表
 
 	public String getRoleId() {
 		return roleId;
@@ -92,6 +95,15 @@ public class Role extends AuditEntityBean {
 
 	public void setUserRoleRelaLs(List<UserRoleRela> userRoleRelaLs) {
 		this.userRoleRelaLs = userRoleRelaLs;
+	}
+
+	@JSONField(serialize = false)
+	public List<RolePermissionRela> getRolePermissionRelaLs() {
+		return rolePermissionRelaLs;
+	}
+
+	public void setRolePermissionRelaLs(List<RolePermissionRela> rolePermissionRelaLs) {
+		this.rolePermissionRelaLs = rolePermissionRelaLs;
 	}
 
 }

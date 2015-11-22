@@ -32,7 +32,7 @@ public class EzPermTreeGridAction extends BaseAction<Object> {
 		OutputJson(ezTree);
 		return null;
 	}
-
+	
 	private void initChild(EzPermTreeBean zt, String id) {
 		List<Permission> permSubList = permissionService.retrieveSubPermLs(id);
 		for (Permission sub : permSubList) {

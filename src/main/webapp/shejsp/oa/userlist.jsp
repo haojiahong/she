@@ -1,4 +1,4 @@
-<%@ page language="java" pageEncoding="utf-8"%>
+aaaa<%@ page language="java" pageEncoding="utf-8"%>
 <html>
 <head>
     <title>用户列表</title>
@@ -7,9 +7,7 @@
 <body>
 	<div class="easyui-layout" data-options="fit:true">
 		<div data-options="region:'center',border:true">
-			<table id="easyTable"  pagination="true"  rownumbers="true"  checkOnSelect="true" singleSelect="true"
-				data-options="url:'${pageContext.request.contextPath}/oa/userAction!retrieve.do',
-				toolbar:'#toolbar',fit:true,striped:true,border:false">
+			<table id="easyTable">
 				<thead>
 					<tr>
 					    <th field="userId" data-options="formatter:ezEditFromat" width="100" align="center">操作</th>
@@ -63,7 +61,17 @@
 					reload();
 				}
 			});
-		user_grid = $('#easyTable').datagrid({ });
+		user_grid = $('#easyTable').datagrid({
+			pagination:true,
+			rownumbers:true,
+			checkOnSelect:true,
+			singleSelect:true,
+			url:'${pageContext.request.contextPath}/oa/userAction!retrieve.do',
+			toolbar:'#toolbar',
+			fit:true,
+			striped:true,
+			border:false
+		});
 	});
 	
 	function ezEditFromat(userId,row,index){

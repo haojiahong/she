@@ -1,8 +1,14 @@
 package com.hjh.she.model.oa;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.hjh.she.model.base.AuditEntityBean;
 
 /**
@@ -14,6 +20,8 @@ import com.hjh.she.model.base.AuditEntityBean;
  * 
  * 
  */
+@Entity
+@Table(name = "oa_role_permission")
 public class RolePermissionRela extends AuditEntityBean {
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -28,6 +36,14 @@ public class RolePermissionRela extends AuditEntityBean {
 
 	@Column(name = "STATUS")
 	private String status;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ROLE_ID", insertable = false, updatable = false)
+	private Role role;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "PERMISSION_ID", insertable = false, updatable = false)
+	private Permission permission;
 
 	public String getId() {
 		return id;
@@ -59,5 +75,23 @@ public class RolePermissionRela extends AuditEntityBean {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	@JSONField(serialize = false)
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	@JSONField(serialize = false)
+	public Permission getPermission() {
+		return permission;
+	}
+
+	public void setPermission(Permission permission) {
+		this.permission = permission;
 	}
 }
