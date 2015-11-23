@@ -2,6 +2,7 @@ package com.hjh.she.she.oa.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,10 +14,14 @@ import com.hjh.she.model.oa.Permission;
 import com.hjh.she.model.oa.Role;
 import com.hjh.she.model.oa.RolePermissionRela;
 import com.hjh.she.she.oa.service.RoleService;
+import com.hjh.she.shiro.MyShiroRealm;
 import com.hjh.she.util.CommonUtil;
 
 @Component("roleService")
 public class RoleServiceImpl implements RoleService {
+
+	@Autowired
+	private MyShiroRealm myShiroRealm;
 
 	@Override
 	public List<Role> findAllRoleList(String roleNameSch, SortParamList sortInfo, PageInfo pageInfo) {
@@ -86,6 +91,8 @@ public class RoleServiceImpl implements RoleService {
 				JPAUtil.create(rela);
 			}
 		}
+		// 权限设置成功后需要清空shiro中的权限缓存数据
+		myShiroRealm.clearAllCachedAuthorizationInfo();
 	}
 
 }

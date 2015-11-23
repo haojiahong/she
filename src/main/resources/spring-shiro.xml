@@ -2,6 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:util="http://www.springframework.org/schema/util" xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="
 	http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans.xsd 
@@ -10,8 +11,10 @@
 	http://www.springframework.org/schema/util
 	http://www.springframework.org/schema/util/spring-util.xsd
 	http://www.springframework.org/schema/cache
-	http://www.springframework.org/schema/cache/spring-cache.xsd">
-	
+	http://www.springframework.org/schema/cache/spring-cache.xsd
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop.xsd">
+
 	<!-- ehcache 的配置 -->
 	<bean id="cacheManager"
 		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
@@ -29,8 +32,6 @@
 	</bean>
 
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-		<!-- <property name="sessionMode" value="native" /> <property name="sessionManager" 
-			ref="sessionManager" /> -->
 		<property name="realm" ref="myShiroRealm" />
 	</bean>
 
@@ -58,14 +59,12 @@
 				/Kaptcha.jpg = anon
 				/jslib/** = anon
 				/cssstyle/** = anon
-				/extend/** = anon
 				/systemAction!load.do = anon
 				/** = authc
-				<!--/login=anon / /index.jsp=authc /login.do*=authc /**=authc /permission/**=roles[admin] 
-					/logout.do*=anon -->
-
 			</value>
 		</property>
 	</bean>
+
+
 
 </beans>

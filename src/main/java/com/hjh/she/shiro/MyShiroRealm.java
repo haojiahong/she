@@ -15,7 +15,6 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.apache.struts2.ServletActionContext;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.hjh.she.model.oa.User;
@@ -23,40 +22,32 @@ import com.hjh.she.util.CommonUtil;
 import com.hjh.she.util.Constants;
 
 public class MyShiroRealm extends AuthorizingRealm {
-	// 用于获取用户信息及用户权限信息的业务接口
 	private SessionFactory hibernateSessionFactory;
 
-	@SuppressWarnings("unused")
-	private Session getCurrentSession() {
-		return hibernateSessionFactory.getCurrentSession();
-	}
-
+	// 获取权限信息
 	@SuppressWarnings("rawtypes")
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-		// String username = (String)
-		// principals.fromRealm(getName()).iterator().next();
 		ShiroUser shiroUser = (ShiroUser) principals.fromRealm(getName()).iterator().next();
 		String username = shiroUser.getAccount();
 		if (username != null) {
 			SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 			// 查询用户授权信息
-			// info.addRole("admin");
-			String sql = null;
+			String hql = null;
+			List perList = null;
 			// 超级管理员默认拥有所有操作权限
 			if (Constants.SYSTEM_ADMINISTRATOR.equals(username)) {
-				sql = "SELECT p.PERMISSION_ID,p.MYID FROM PERMISSION AS p\n"
-						+ "where p.STATUS='A' and p.TYPE='O' and p.ISUSED='Y'";
+				hql = "select p.permissionId,p.myid from Permission p where p.status='A' and p.type='O' and p.isused='Y'";
+				perList = this.getSessionFactory().getCurrentSession().createQuery(hql).list();
 			} else {
-				sql = "SELECT DISTINCT rp.PERMISSION_ID,p.MYID FROM\n"
-						+ "ROLE_PERMISSION AS rp\n"
-						+ "INNER JOIN ROLE AS r ON rp.ROLE_ID = r.ROLE_ID\n"
-						+ "INNER JOIN USER_ROLE AS ur ON rp.ROLE_ID = ur.ROLE_ID\n"
-						+ "INNER JOIN USERS AS u ON u.USER_ID = ur.USER_ID\n"
-						+ "INNER JOIN PERMISSION AS p ON rp.PERMISSION_ID = p.PERMISSION_ID\n"
-						+ "WHERE rp.STATUS='A' and r.STATUS='A' and ur.STATUS='A' and u.STATUS='A' and p.STATUS='A' and p.TYPE='O' and p.ISUSED='Y'\n"
-						+ "and u.NAME ='" + username + "'";
+				hql = "SELECT DISTINCT rp.PERMISSION_ID,p.MYID FROM " + "OA_ROLE_PERMISSION AS rp"
+						+ " INNER JOIN OA_ROLE AS r ON rp.ROLE_ID = r.ROLE_ID"
+						+ " INNER JOIN OA_USER_ROLE AS ur ON rp.ROLE_ID = ur.ROLE_ID"
+						+ " INNER JOIN OA_USER AS u ON u.USER_ID = ur.USER_ID"
+						+ " INNER JOIN OA_PERMISSION AS p ON rp.PERMISSION_ID = p.PERMISSION_ID"
+						+ " WHERE r.STATUS='A' and u.STATUS='A' and p.STATUS='A' and p.TYPE='O' and p.ISUSED='Y'"
+						+ " and u.ACCOUNT ='" + username + "'";
+				perList = this.getSessionFactory().getCurrentSession().createSQLQuery(hql).list();
 			}
-			List perList = this.getSessionFactory().getCurrentSession().createSQLQuery(sql).list();
 			if (perList != null && perList.size() != 0) {
 				for (Object object : perList) {
 					Object[] obj = (Object[]) object;
@@ -91,7 +82,6 @@ public class MyShiroRealm extends AuthorizingRealm {
 	/**
 	 * 更新用户授权信息缓存.
 	 */
-
 	public void clearCachedAuthorizationInfo(String principal) {
 		SimplePrincipalCollection principals = new SimplePrincipalCollection(principal, getName());
 		clearCachedAuthorizationInfo(principals);
@@ -100,7 +90,6 @@ public class MyShiroRealm extends AuthorizingRealm {
 	/**
 	 * 清除所有用户授权信息缓存.
 	 */
-
 	public void clearAllCachedAuthorizationInfo() {
 		Cache<Object, AuthorizationInfo> cache = getAuthorizationCache();
 		if (cache != null) {

@@ -25,14 +25,13 @@ public class LoginServiceImpl implements LoginService {
 			sql = "SELECT p.PERMISSION_ID,p.PID,p.NAME,p.ICONCLS,p.URL FROM OA_PERMISSION AS p "
 					+ " where p.STATUS='A' and p.TYPE='F' and p.ISUSED='Y'";
 		} else {
-			sql = "SELECT DISTINCT p.PERMISSION_ID,p.PID,p.NAME,p.ICONCLS,p.URL FROM\n"
-					+ "ROLE_PERMISSION AS rp\n"
-					+ "INNER JOIN ROLE AS r ON rp.ROLE_ID = r.ROLE_ID\n"
-					+ "INNER JOIN USER_ROLE AS ur ON rp.ROLE_ID = ur.ROLE_ID\n"
-					+ "INNER JOIN USERS AS u ON u.USER_ID = ur.USER_ID\n"
-					+ "INNER JOIN PERMISSION AS p ON rp.PERMISSION_ID = p.PERMISSION_ID\n"
-					+ "WHERE rp.STATUS='A' and r.STATUS='A' and ur.STATUS='A' and u.STATUS='A' and p.STATUS='A' and p.TYPE='F' and p.ISUSED='Y'\n"
-					+ "and u.USER_ID=" + user.getUserId() + "";
+			sql = "SELECT DISTINCT p.PERMISSION_ID,p.PID,p.NAME,p.ICONCLS,p.URL FROM " + " OA_ROLE_PERMISSION AS rp "
+					+ " INNER JOIN OA_ROLE AS r ON rp.ROLE_ID = r.ROLE_ID "
+					+ " INNER JOIN OA_USER_ROLE AS ur ON rp.ROLE_ID = ur.ROLE_ID "
+					+ " INNER JOIN OA_USER AS u ON u.USER_ID = ur.USER_ID "
+					+ " INNER JOIN OA_PERMISSION AS p ON rp.PERMISSION_ID = p.PERMISSION_ID "
+					+ " WHERE r.STATUS='A' and u.STATUS='A' and p.STATUS='A' and p.TYPE='F' and p.ISUSED='Y' "
+					+ " and u.USER_ID = '" + user.getUserId() + "'";
 		}
 		List listmenu = JPAUtil.executeNativeQuery(sql);
 		List<MenuModel> parentList = new ArrayList<MenuModel>();

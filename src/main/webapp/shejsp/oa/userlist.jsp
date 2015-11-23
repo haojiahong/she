@@ -1,4 +1,5 @@
-aaaa<%@ page language="java" pageEncoding="utf-8"%>
+<%@ page language="java" pageEncoding="utf-8"%>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <html>
 <head>
     <title>用户列表</title>
@@ -39,14 +40,12 @@ aaaa<%@ page language="java" pageEncoding="utf-8"%>
 				<tr>
 					<table>
 						<tr>
-							<td><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="add()" >添加</a> </td>
-							<td><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="delUsers()">删除</a></td>
-							<td><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-save',plain:true" onclick="saveUsers()">保存</a></td>
-							<td><div class="datagrid-btn-separator"></div></td>
-							<td><a href="javascript:void(0)" class="easyui-linkbutton" onclick="printExcel()">导出excel模板</a></td>
-							<td><a href="javascript:void(0)" class="easyui-linkbutton" onclick="uploadifyFile(fileCallback,'fileTemp','xls;xlsx')">导入Excel数据</a></td>
-							<td><a href="javascript:void(0)" class="easyui-linkbutton" onclick="myPrint()">打印</a></td>
-							<td><a href="javascript:void(0)" class="easyui-linkbutton" onclick="myEChart()">图表</a></td>
+							<shiro:hasPermission name="userAdd">
+								<td><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="add()" >添加</a> </td>
+							</shiro:hasPermission>
+							<shiro:hasPermission name="userDel">
+								<td><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="delUser($('#easyTable').datagrid('getSelected').userId)">删除</a></td>
+							</shiro:hasPermission>
 						</tr>
 					</table>
 				</tr>
@@ -78,8 +77,10 @@ aaaa<%@ page language="java" pageEncoding="utf-8"%>
 		var str = "";
 		str += jqueryUtil.formatString('<img title="编辑" src="{1}" onclick="editUser(\'{0}\');"/>', userId,'${pageContext.request.contextPath}/cssstyle/images/extjs_icons/pencil.png');
 		str += "&nbsp;";
+		str += "<shiro:hasPermission name='userDel'>";
 		str += jqueryUtil.formatString('<img title="删除" src="{1}" onclick="delUser(\'{0}\');"/>', userId,'${pageContext.request.contextPath}/cssstyle/images/extjs_icons/cancel.png');
 		str += "&nbsp;";
+		str += "</shiro:hasPermission>";
 		str += jqueryUtil.formatString('<img title="附件管理" src="{1}" onclick="uploadUser(\'{0}\');"/>', userId,'${pageContext.request.contextPath}/cssstyle/images/extjs_icons/lock/lock_edit.png');
 		str += "&nbsp;";
 		str += jqueryUtil.formatString('<img title="初始化密码" src="{1}" onclick="initPassword(\'{0}\');"/>',userId,'${pageContext.request.contextPath}/cssstyle/images/extjs_icons/key.png');

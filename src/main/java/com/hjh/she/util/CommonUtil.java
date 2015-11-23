@@ -22,7 +22,7 @@ import com.hjh.she.shiro.ShiroUser;
 public class CommonUtil {
 
 	/**
-	 * 函数功能说明 :获取当前登录用户实体类 Administrator修改者名字 2013-5-10修改日期 修改内容
+	 * 函数功能说明 :获取当前登录用户
 	 * 
 	 * @Title: getCurrendUser
 	 * @param @return 设定文件
