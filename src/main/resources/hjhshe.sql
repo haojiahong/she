@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50609
 File Encoding         : 65001
 
-Date: 2015-11-19 17:35:07
+Date: 2015-11-23 17:19:22
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -105,10 +105,14 @@ CREATE TABLE `oa_permission` (
 -- ----------------------------
 -- Records of oa_permission
 -- ----------------------------
+INSERT INTO `oa_permission` VALUES ('0df0a287f92311ee8cdd4af14d85e6ab', '0df0a287f92349ee8cdd4af14d85e6ab', '添加用户', '用户管理', '17', 'userAdd', 'O', 'Y', 'closed', 'javascript:void(0);', 'icon-adds', 'N', 'A', '添加用户', '2015-11-23 10:12:56', null, 'admin', null);
+INSERT INTO `oa_permission` VALUES ('0df0a287f92322ee8cdd4af14d85e6ab', '0df0a287f92349ee8cdd4af14d85e6ab', '删除用户', '用户管理', '18', 'userDel', 'O', 'Y', 'closed', 'javascript:void(0);', 'icon-cancel', 'N', 'A', '删除用户', '2015-11-23 10:14:22', null, 'admin', null);
+INSERT INTO `oa_permission` VALUES ('0df0a287f92333ee8cdd4af14d85e6ab', '0df0a287f92349ee8cdd4af14d85e6ab', '编辑用户', '用户管理', '19', 'userEdit', 'O', 'Y', 'closed', 'javascript:void(0);', 'icon-edit', 'N', 'A', '编辑用户', '2015-11-23 10:16:02', null, 'admin', null);
 INSERT INTO `oa_permission` VALUES ('0df0a287f92349ee8cdd4af14d85e6aa', null, '系统管理', null, '0', 'sysMgr', 'F', 'Y', 'closed', 'javascript:void(0);', 'icon-sys', 'Y', 'A', '系统管理', '2013-05-23 00:00:00', '2013-05-23 00:00:00', 'admin', 'admin');
-INSERT INTO `oa_permission` VALUES ('0df0a287f92349ee8cdd4af14d85e6ab', '0df0a287f92349ee8cdd4af14d85e6aa', '用户管理', '系统管理', '15', 'userList', 'F', 'Y', 'closed', 'shejsp/oa/userlist.jsp', 'icon-adds', 'N', 'A', '用户管理', '2015-11-08 12:38:09', null, 'admin', 'admin');
-INSERT INTO `oa_permission` VALUES ('0df0a287f92349ee8cdd4af14d85e6ac', '0df0a287f92349ee8cdd4af14d85e6aa', '角色管理', '系统管理', '16', 'roleList', 'F', 'Y', 'closed', 'shejsp/oa/rolelist.jsp', 'icon-adds', 'N', 'A', '角色管理', '2015-11-12 20:29:19', null, 'admin', null);
-INSERT INTO `oa_permission` VALUES ('0df0a287f92349ee8cdd4af14d85e6ad', '0df0a287f92349ee8cdd4af14d85e6aa', '权限管理', '系统管理', '11', 'permissionList', 'F', 'Y', 'closed', 'shejsp/oa/privtreegridez.jsp', 'icon-adds', 'N', 'A', '权限管理', '2015-11-16 23:00:21', null, 'admin', null);
+INSERT INTO `oa_permission` VALUES ('0df0a287f92349ee8cdd4af14d85e6ab', '0df0a287f92349ee8cdd4af14d85e6aa', '用户管理', '系统管理', '15', 'userList', 'F', 'Y', 'closed', 'shejsp/oa/userlist.jsp', 'icon-adds', 'Y', 'A', '用户管理', '2015-11-08 12:38:09', null, 'admin', 'admin');
+INSERT INTO `oa_permission` VALUES ('0df0a287f92349ee8cdd4af14d85e6ac', '0df0a287f92349ee8cdd4af14d85e6aa', '角色管理', '系统管理', '16', 'roleList', 'F', 'Y', 'closed', 'shejsp/oa/rolelist.jsp', 'icon-tip', 'N', 'A', '角色管理', '2015-11-12 20:29:19', null, 'admin', null);
+INSERT INTO `oa_permission` VALUES ('0df0a287f92349ee8cdd4af14d85e6ad', '0df0a287f92349ee8cdd4af14d85e6aa', '权限管理', '系统管理', '11', 'permissionList', 'F', 'Y', 'closed', 'shejsp/oa/privtreegridez.jsp', 'icon-role', 'N', 'A', '权限管理', '2015-11-16 23:00:21', null, 'admin', null);
+INSERT INTO `oa_permission` VALUES ('0df0a287f92349ee8cdd4af14d85e6ae', '0df0a287f92349ee8cdd4af14d85e6aa', '数据库管理', '系统管理', '20', 'databaseMgr', 'F', 'Y', 'closed', 'druid/index.html', 'icon-db', 'N', 'A', '数据库管理', '2015-11-23 15:34:08', null, 'admin', null);
 
 -- ----------------------------
 -- Table structure for `oa_role`
@@ -132,7 +136,7 @@ CREATE TABLE `oa_role` (
 -- ----------------------------
 INSERT INTO `oa_role` VALUES ('1678baf3acdc425696cb4933b907fb1a', '总经理', '总经理', 'A', '3', '2015-11-16 20:11:47', null, 'admin', null);
 INSERT INTO `oa_role` VALUES ('46d7875c5597420d88cef6e24b58500d', '安卓工程师', '66', 'A', '6', '2015-11-19 10:48:34', null, 'admin', null);
-INSERT INTO `oa_role` VALUES ('71c87d56df2143bea1b65f6544e6220e', '超级管理员', ' 333', 'A', '5', '2015-11-16 20:26:25', '2015-11-19 10:41:25', 'admin', 'admin');
+INSERT INTO `oa_role` VALUES ('71c87d56df2143bea1b65f6544e6220e', '超级管理员', '777777777', 'A', '5', '2015-11-16 20:26:25', '2015-11-20 11:30:21', 'admin', 'admin');
 INSERT INTO `oa_role` VALUES ('800f7ce0010049a889c5c47eaf7cb50b', '测试工程师', '哈哈哈哈', 'A', '2', '2015-11-15 20:18:52', '2015-11-15 22:39:24', 'admin', 'admin');
 INSERT INTO `oa_role` VALUES ('ad7afedd37ed4b91a77606002d931c1a', '开发工程师', '开发工程师', 'A', '1', '2015-11-16 20:06:36', '2015-11-16 20:06:51', 'admin', 'admin');
 
@@ -147,14 +151,25 @@ CREATE TABLE `oa_role_permission` (
   `STATUS` char(1) DEFAULT NULL COMMENT '状态',
   `CREATED` datetime DEFAULT NULL COMMENT '创造日期',
   `LASTMOD` datetime DEFAULT NULL COMMENT '修改日期',
-  `CREATER` int(10) DEFAULT NULL COMMENT '创建人',
-  `MODIFYER` int(10) DEFAULT NULL COMMENT '修改人',
+  `CREATER` varchar(50) DEFAULT NULL COMMENT '创建人',
+  `MODIFYER` varchar(50) DEFAULT NULL COMMENT '修改人',
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of oa_role_permission
 -- ----------------------------
+INSERT INTO `oa_role_permission` VALUES ('22fd59d1a3c84427abc267ac2dc53e1f', 'ad7afedd37ed4b91a77606002d931c1a', '0df0a287f92349ee8cdd4af14d85e6ab', null, '2015-11-23 14:16:59', null, 'adminR', null);
+INSERT INTO `oa_role_permission` VALUES ('24434538e966476cad4fc43fc0c0fa73', 'ad7afedd37ed4b91a77606002d931c1a', '0df0a287f92311ee8cdd4af14d85e6ab', null, '2015-11-23 14:16:59', null, 'adminR', null);
+INSERT INTO `oa_role_permission` VALUES ('5a750baa498940b191d4bb203e407e85', '1678baf3acdc425696cb4933b907fb1a', '0df0a287f92349ee8cdd4af14d85e6ac', null, '2015-11-23 10:38:02', null, 'admin', null);
+INSERT INTO `oa_role_permission` VALUES ('5b44ffadc2d7427cbd13e7abcac0b04f', '1678baf3acdc425696cb4933b907fb1a', '0df0a287f92311ee8cdd4af14d85e6ab', null, '2015-11-23 10:38:02', null, 'admin', null);
+INSERT INTO `oa_role_permission` VALUES ('6610815232394ff488b61a94abbd5d4c', '1678baf3acdc425696cb4933b907fb1a', '0df0a287f92349ee8cdd4af14d85e6aa', null, '2015-11-23 10:38:02', null, 'admin', null);
+INSERT INTO `oa_role_permission` VALUES ('7d6237b08cc9427ba3f383a920b64ad7', 'ad7afedd37ed4b91a77606002d931c1a', '0df0a287f92333ee8cdd4af14d85e6ab', null, '2015-11-23 14:16:59', null, 'adminR', null);
+INSERT INTO `oa_role_permission` VALUES ('92c20ece3b9346cabb613bc80b24cb7e', 'ad7afedd37ed4b91a77606002d931c1a', '0df0a287f92349ee8cdd4af14d85e6ad', null, '2015-11-23 14:16:59', null, 'adminR', null);
+INSERT INTO `oa_role_permission` VALUES ('a736a35d48f14e9aae67ec93ead44ab0', 'ad7afedd37ed4b91a77606002d931c1a', '0df0a287f92349ee8cdd4af14d85e6aa', null, '2015-11-23 14:16:59', null, 'adminR', null);
+INSERT INTO `oa_role_permission` VALUES ('bc467bc801f2414e8d4160d622d3f251', 'ad7afedd37ed4b91a77606002d931c1a', '0df0a287f92349ee8cdd4af14d85e6ac', null, '2015-11-23 14:16:59', null, 'adminR', null);
+INSERT INTO `oa_role_permission` VALUES ('dc43285ff3b44726851072f82a8ca734', '1678baf3acdc425696cb4933b907fb1a', '0df0a287f92349ee8cdd4af14d85e6ab', null, '2015-11-23 10:38:02', null, 'admin', null);
+INSERT INTO `oa_role_permission` VALUES ('f237e0fa16964f70b868900d2296022d', 'ad7afedd37ed4b91a77606002d931c1a', '0df0a287f92322ee8cdd4af14d85e6ab', null, '2015-11-23 14:16:59', null, 'adminR', null);
 
 -- ----------------------------
 -- Table structure for `oa_user`
@@ -195,9 +210,10 @@ CREATE TABLE `oa_user` (
 -- ----------------------------
 -- Records of oa_user
 -- ----------------------------
-INSERT INTO `oa_user` VALUES ('0df0a287f92349ee8cdd4af14d85e64f', null, null, null, '', 'admin', 'admin', '123', 'admin', '123', null, null, null, null, null, null, null, 'A', null, null, null, null, '', '2015-11-04 17:32:09', '2015-11-19 09:39:16', null, '1', 'admin');
-INSERT INTO `oa_user` VALUES ('46df9baeb72d46938374a8abeb752ace', null, null, null, '', 'haotest', 'haotest', '234', '', '234', null, null, null, null, null, null, null, '', null, null, null, null, '', null, '2015-11-19 09:36:18', null, '2', 'admin');
-INSERT INTO `oa_user` VALUES ('63c281d850e5413b883cf7546503664d', null, null, null, '', '222', 'haotest2222', '222', '', '2222', null, null, null, null, null, null, null, '', null, null, null, null, '', '2015-11-15 20:09:14', '2015-11-19 09:36:26', 'admin', '1', 'admin');
+INSERT INTO `oa_user` VALUES ('0df0a287f92349ee8cdd4af14d85e64f', null, null, null, '', 'admin', 'admin', '123', 'admin', '123', null, null, null, null, null, null, null, 'A', null, null, null, null, '', '2015-11-04 17:32:09', '2015-11-23 17:06:51', null, '1', 'admin');
+INSERT INTO `oa_user` VALUES ('46df9baeb72d46938374a8abeb752ace', null, null, null, '', 'haotest', 'haotest', '234', '', '234', null, null, null, null, null, null, null, '', null, null, null, null, '', null, '2015-11-20 17:03:26', null, '2', 'admin');
+INSERT INTO `oa_user` VALUES ('7748e2a3c4284f6e8bc035da89da34ff', null, null, null, '', 'adminR', 'adminHasRole', '3', 'admin', '3', null, null, null, null, null, null, null, 'A', null, null, null, null, '333', '2015-11-23 14:05:21', null, 'admin', '2', null);
+INSERT INTO `oa_user` VALUES ('86bcd40b42d64e08b35278a8745524c1', null, null, null, '', 'shiro', 'haotestshiro', '555', 'admin', '55', null, null, null, null, null, null, null, 'A', null, null, null, null, '', '2015-11-23 09:27:53', '2015-11-23 09:29:36', 'admin', '2', 'admin');
 
 -- ----------------------------
 -- Table structure for `oa_user_role`
@@ -219,3 +235,7 @@ CREATE TABLE `oa_user_role` (
 -- Records of oa_user_role
 -- ----------------------------
 INSERT INTO `oa_user_role` VALUES ('0df0a287f92349ee8cdd4af14d85eaaa', '0df0a287f92349ee8cdd4af14d85e64f', '71c87d56df2143bea1b65f6544e6220e', 'A', '2015-11-19 11:02:56', null, 'admin', null);
+INSERT INTO `oa_user_role` VALUES ('4ae8a08bb5bb47f79b58e79dfa6ed365', '46df9baeb72d46938374a8abeb752ace', 'ad7afedd37ed4b91a77606002d931c1a', 'A', '2015-11-20 10:26:50', null, 'admin', null);
+INSERT INTO `oa_user_role` VALUES ('5671b7f891cc4b8395e15481a3601c16', '46df9baeb72d46938374a8abeb752ace', '800f7ce0010049a889c5c47eaf7cb50b', 'A', '2015-11-20 10:23:00', null, 'admin', null);
+INSERT INTO `oa_user_role` VALUES ('cb7aa087f6cd4529a5942d9086ab8853', '86bcd40b42d64e08b35278a8745524c1', '1678baf3acdc425696cb4933b907fb1a', 'A', '2015-11-23 10:36:43', null, 'admin', null);
+INSERT INTO `oa_user_role` VALUES ('d2bdce5e4aa54dab83e91817dd332fb8', '7748e2a3c4284f6e8bc035da89da34ff', 'ad7afedd37ed4b91a77606002d931c1a', 'A', '2015-11-23 14:05:38', null, 'admin', null);
