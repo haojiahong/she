@@ -1,6 +1,9 @@
 <%@ page language="java"  pageEncoding="utf-8"%>
-<style>
-
+<html>
+<head>
+<jsp:include page="/shejsp/sys/inc.jsp"></jsp:include>
+<title>用户添加</title>
+<style type="text/css">
 #form th {
 	text-align: right
 }
@@ -9,7 +12,8 @@
 	width: 160px
 }
 </style>
-
+</head>
+<body>
 <div id="tt" class="easyui-tabs" data-options="fit:true">
 <div title="用户基本信息" style="padding: 20px;">
 <div class="easyui-layout" data-options="border:false,fit:true" style="padding: 15px">
@@ -52,9 +56,9 @@
 			<tr>
 				<th>备注</th>
 				<td colspan="4">
-				<textarea name="description" value="${user.description }" 
-					class="easyui-validatebox textbox" style="width: 100%; height: 80px"
-					data-options="validType:['length[0,2000]']"></textarea>
+				<input name="description" value="${user.description }" 
+					class="easyui-validatebox textbox" style="width:250px;height:40px;"
+					data-options="validType:['length[0,200]']"></input>
 				</td>
 			</tr>
 			
@@ -68,8 +72,20 @@
 </div>
 
 <script type="text/javascript">
-	$(function() {
-		$('#useradd_form').form(ez_formSub);
-	});
+	var submitForm = function($dialog, $grid, $pjq,params) {
+		if ($('form').form('validate')) {
+			var url = "${pageContext.request.contextPath}/oa/userAction!save.do";
+			$.post(url, jqueryUtil.serializeObject($('form')), function(result) {
+				if (result) {
+					$grid.datagrid('load',params);
+					$dialog.dialog('destroy');
+					$pjq.messager.alert('提示', result.message,'info');
+				} else {
+					$pjq.messager.alert('提示', result.message, 'error');
+				}
+			}, 'json');
+		}
+	};
 </script>
-
+</body>
+</html>

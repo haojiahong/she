@@ -6,15 +6,15 @@
 </head>
 <body>
 	<table id="roleTable">
-				<thead>
-					<tr>
-						<th field="roleId" data-options="formatter:ezEditFromat" width="100" align="center">操作</th>
-						<th field="name" width="100" sortable="true" > 角色名称 </th>
-						<th field="description" width="120" sortable="true" >备注</th>
-						<th field="status" width="100" sortable="true" >状态</th>
-						<th field="sortNum" width="100" sortable="true" >序号</th>
-					</tr>
-				</thead>
+		<thead>
+			<tr>
+				<th field="roleId" data-options="formatter:ezEditFromat" width="100" align="center">操作</th>
+				<th field="name" width="100" sortable="true" > 角色名称 </th>
+				<th field="description" width="120" sortable="true" >备注</th>
+				<th field="status" width="100" sortable="true" >状态</th>
+				<th field="sortNum" width="100" sortable="true" >序号</th>
+			</tr>
+		</thead>
 	</table>
 	<div id="roletoolbar">
 	<table>

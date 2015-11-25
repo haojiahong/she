@@ -2,7 +2,9 @@ package com.hjh.she.she.oa.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hjh.she.basedao.JPAUtil;
 import com.hjh.she.model.base.PageInfo;
@@ -13,11 +15,15 @@ import com.hjh.she.model.oa.Role;
 import com.hjh.she.model.oa.User;
 import com.hjh.she.model.oa.UserRoleRela;
 import com.hjh.she.she.oa.service.UserService;
+import com.hjh.she.shiro.MyShiroRealm;
 import com.hjh.she.util.CommonUtil;
 import com.hjh.she.util.Constants;
 
 @Component("userService")
 public class UserServiceImpl implements UserService {
+	@Autowired
+	private MyShiroRealm myShiroRealm;
+
 	@Override
 	public List<User> findAllUserList(String userNameSch, SortParamList sortInfo, PageInfo pageInfo) {
 		String jpql = "select user from User user where 1=1";
@@ -95,6 +101,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	@Transactional
 	public void setRoles(String roleIds, String userId) {
 		List<String> roleIdLs = CommonUtil.paraseStrs(roleIds);
 		if (roleIdLs.size() > 0) {
@@ -106,10 +113,13 @@ public class UserServiceImpl implements UserService {
 				rela.setStatus(Constants.PERSISTENCE_STATUS);
 				JPAUtil.create(rela);
 			}
+			// 角色设置成功后需要清空shiro中的权限缓存数据
+			myShiroRealm.clearAllCachedAuthorizationInfo();
 		}
 	}
 
 	@Override
+	@Transactional
 	public void delRoles(String roleIds, String userId) {
 		List<String> roleIdLs = CommonUtil.paraseStrs(roleIds);
 		String jpql = "select rela from UserRoleRela rela where rela.roleId in (:roleIdLs) and rela.userId =:userId";
@@ -119,6 +129,8 @@ public class UserServiceImpl implements UserService {
 		List<UserRoleRela> relaLs = JPAUtil.find(jpql, params);
 		if (relaLs.size() > 0) {
 			JPAUtil.remove(relaLs);
+			// 角色设置成功后需要清空shiro中的权限缓存数据
+			myShiroRealm.clearAllCachedAuthorizationInfo();
 		}
 
 	}

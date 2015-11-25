@@ -5,24 +5,11 @@
     <title>欢迎</title>
     <jsp:include page="/shejsp/sys/inc.jsp"></jsp:include>
 	<style type="text/css">
-	#menuAccordion a.l-btn span span.l-btn-text {
-	    display: inline-block;
-	    height: 14px;
-	    line-height: 14px;
-	    margin: 0px 0px 0px 10px;
-	    padding: 0px 0px 0px 10px;
-	    vertical-align: baseline;
-	    width: 128px;
-	}
-	#menuAccordion 	a.l-btn span span.l-btn-icon-left {
-	    background-position: left center;
-	    padding: 0px 0px 0px 20px;
-	}
-	#menuAccordion .panel-body {
-		padding:5px;
-	}
-	#menuAccordion span:focus{
-		outline: none;
+		#menuAccordion .panel-body {
+			padding:5px;
+		}
+		#menuAccordion span:focus{
+			outline: none;
 	}
 	</style>
   </head>
@@ -32,18 +19,11 @@
 			<div id="menuAccordion"></div>
 	</div> 
 	<div data-options="region:'south',border:false" style="height:25px;background:#EEE;padding:5px;" href="${pageContext.request.contextPath}/shejsp/sys/layout/south.jsp"></div>
-	<div data-options="region:'center',plain:true,title:'欢迎使用ERP'" style="overflow: hidden;"  href="${pageContext.request.contextPath}/shejsp/sys/layout/center.jsp"></div>
+	<div data-options="region:'center',plain:true,title:'欢迎使用'" style="overflow: hidden;"  href="${pageContext.request.contextPath}/shejsp/sys/layout/center.jsp"></div>
 </body>
 <script type="text/javascript">
 	$(function(){
 		initMenu();
-		/* if (jqueryUtil.isLessThanIe8()) {
-			$.messager.show({
-				title : '警告',
-				msg : '您使用的浏览器版本太低！<br/>建议您使用谷歌浏览器来获得更快的页面响应效果！',
-				timeout : 1000 * 30
-			});
-		} */
 	});
 	function initMenu(){
 		var $ma=$("#menuAccordion");

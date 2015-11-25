@@ -56,10 +56,10 @@
 <script type="text/javascript">
 	$(function(){
 		$(".com_search").keydown(function(event) {
-				if (event.which == 13) {
-					reload();
-				}
-			});
+			if (event.which == 13) {
+				reload();
+			}
+		});
 		user_grid = $('#easyTable').datagrid({
 			pagination:true,
 			rownumbers:true,
@@ -94,34 +94,34 @@
 	}
 	
 	function editUser(userId){
-		parent.$.modalDialog({
+		var params = {userNameSch:$("#userNameSch").val()};
+		var editUserDialog= parent.jqueryUtil.modalDialog({
 			title : '编辑',
 			width : 600,
 			height : 400,
-			href : '${pageContext.request.contextPath}/oa/userAction!editUser.do?userId=' + userId,
+			url : '${pageContext.request.contextPath}/oa/userAction!editUser.do?userId=' + userId,
 			buttons : [ {
 				text : 	'保存',
 				handler : function() {
-					var f = parent.$.modalDialog.handler.find("#useradd_form");
-					f.submit();
+					editUserDialog.find('iframe').get(0).contentWindow.submitForm(editUserDialog, user_grid, parent.$,params);
 				}
 			} ]
 		});
 	}
 	
 	function add() {
-		parent.$.modalDialog({
+		var params = {userNameSch:$("#userNameSch").val()};
+		var addUser_dialog = parent.jqueryUtil.modalDialog({
 			title : '添加',
 			width : 600,
 			height : 400,
-			href : '${pageContext.request.contextPath}/oa/userAction!addUser.do',
+			url : '${pageContext.request.contextPath}/oa/userAction!addUser.do',
 			buttons : [ {
 				text : "保存",
 				handler : function() {
-					var f = parent.$.modalDialog.handler.find("#useradd_form");
-					f.submit();
+					addUser_dialog.find('iframe').get(0).contentWindow.submitForm(addUser_dialog, user_grid, parent.$,params);
 				}
-			} ]
+			}]
 		});
 	}
 	

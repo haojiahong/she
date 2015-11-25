@@ -37,10 +37,6 @@
 		}, 1);
 		$.parser.auto = true;
 	});
-	// IE检测
-	jqueryUtil.isLessThanIe8 = function() {
-		return ($.browser.msie && $.browser.version < 8);
-	};
 	/**
 	 * 使panel和datagrid在加载时提示
 	 * 

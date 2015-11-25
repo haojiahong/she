@@ -5,27 +5,30 @@
     <jsp:include page="/shejsp/sys/inc.jsp"></jsp:include>
 </head>
 <body>
-	<table id="setNewRoleListTable"  class="easyui-datagrid" pagination="true"  rownumbers="true"
-		data-options="url:'${pageContext.request.contextPath}/oa/userAction!setNewRoleRetrieve.do',fit:true,striped:true">
-				<thead>
-					<tr>
-						<th field="name" width="100" sortable="true" > 角色名称 </th>
-						<th field="description" width="120" sortable="true" >备注</th>
-						<th field="status" width="100" sortable="true" >状态</th>
-						<th field="sortNum" width="100" sortable="true" >序号</th>
-					</tr>
-				</thead>
-	</table>
-	<input type="hidden" id="userId" value="${param.userId}">
+<table id="setNewRoleListTable">
+	<thead>
+		<tr>
+			<th field="name" width="100" sortable="true" > 角色名称 </th>
+			<th field="description" width="120" sortable="true" >备注</th>
+			<th field="status" width="100" sortable="true" >状态</th>
+			<th field="sortNum" width="100" sortable="true" >序号</th>
+		</tr>
+	</thead>
+</table>
+<input type="hidden" id="userId" value="${param.userId}">
 	
-
 <script type="text/javascript">
 $(function(){
 	var userId = $("#userId").val();
 	var setNewRoleList_grid = $('#setNewRoleListTable').datagrid({
 		queryParams : {
 			userId : userId
-		}
+		},
+		url:'${pageContext.request.contextPath}/oa/userAction!setNewRoleRetrieve.do',
+		fit:true,
+		striped:true,
+		pagination:true,
+		rownumbers:true
 	});
 });
 
