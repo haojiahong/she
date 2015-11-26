@@ -3,6 +3,8 @@ package com.hjh.she.she.oa.action;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.AuthorizationException;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.Result;
@@ -46,6 +48,10 @@ public class UserAction extends BaseAction<User> {
 	}
 
 	public String addUser() throws Exception {
+		if (!SecurityUtils.getSubject().isPermitted("userAdd")) {
+			System.out.println("no permission======================");
+			throw new AuthorizationException("No Permission");
+		}
 		user = userService.add();
 		return "editUser";
 	}

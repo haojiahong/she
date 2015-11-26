@@ -23,27 +23,10 @@
 		</property>
 	</bean>
 
-	<!-- shiro的配置 -->
-	<bean id="myShiroRealm" class="com.hjh.she.shiro.MyShiroRealm">
-		<!-- 用来实现用户名密码的查询 -->
-		<property name="hibernateSessionFactory" ref="sessionFactory" />
-		<property name="cacheManager" ref="shiroCacheManager" />
-		<property name="authenticationCacheName" value="shiroAuthorizationCache"></property>
-	</bean>
-
-	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-		<property name="realm" ref="myShiroRealm" />
-	</bean>
-
-	<!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
-	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
-
+	<!-- shiro缓存配置 -->
 	<bean id="shiroCacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
 		<property name="cacheManager" ref="cacheManager" />
 	</bean>
-
-	<bean id="formAuthenticationFilter"
-		class="org.apache.shiro.web.filter.authc.FormAuthenticationFilter" />
 
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" />
@@ -66,6 +49,23 @@
 		</property>
 	</bean>
 
+	<bean id="formAuthenticationFilter"
+		class="org.apache.shiro.web.filter.authc.FormAuthenticationFilter" />
+
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="myShiroRealm" />
+	</bean>
+
+	<!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+
+	<!-- 自定义Realm的配置 -->
+	<bean id="myShiroRealm" class="com.hjh.she.shiro.MyShiroRealm">
+		<!-- 用来实现用户名密码的查询 -->
+		<property name="hibernateSessionFactory" ref="sessionFactory" />
+		<property name="cacheManager" ref="shiroCacheManager" />
+		<property name="authenticationCacheName" value="shiroAuthorizationCache"></property>
+	</bean>
 
 
 </beans>
