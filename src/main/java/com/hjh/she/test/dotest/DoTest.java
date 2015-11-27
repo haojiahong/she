@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.hjh.she.basedao.RedisDao;
 import com.hjh.she.test.service.UserServcie;
 
 /**
@@ -24,9 +25,18 @@ public class DoTest {
 	@Test
 	public void testHibernate() {
 		ApplicationContext ac = new ClassPathXmlApplicationContext(
-				new String[] { "spring.xml", "spring-hibernate.xml" });	
+				new String[] { "spring.xml", "spring-hibernate.xml" });
 		UserServcie userServcie = (UserServcie) ac.getBean("userService");
 		userServcie.testHibernate();
 
+	}
+
+	@Test
+	public void testRedis() {
+		ApplicationContext ac = new ClassPathXmlApplicationContext(new String[] { "spring.xml", "spring-hibernate.xml",
+				"spring-shiro.xml", "spring-redis.xml" });
+		RedisDao redisDao = ac.getBean("redisDao", RedisDao.class);
+		redisDao.set("test", "test-----haojiahong...");
+		System.out.println(redisDao.get("test"));
 	}
 }
