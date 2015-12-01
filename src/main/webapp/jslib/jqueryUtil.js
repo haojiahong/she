@@ -174,8 +174,8 @@
 			docchgskin(dc, selectId, cookiesColor);
 		});
 		function docchgskin(dc, selectId, cookiesColor) {
-			removejscssfile(dc, "themes/" + cookiesColor + "/easyui.css", "css");
-			createLink(dc, "themes/" + selectId + "/easyui.css");
+			removejscssfile(dc, "jslib/jquery-easyui-1.4.1/themes/" + cookiesColor + "/easyui.css", "css");
+			createLink(dc, "/she/jslib/jquery-easyui-1.4.1/themes/" + selectId + "/easyui.css");
 		}
 		function createLink(dc, url) {
 			var urls = url.replace(/[,]\s*$/ig, "").split(",");

@@ -4,12 +4,17 @@
   <head>
     <title>login</title>
 	<jsp:include page="/shejsp/sys/inc.jsp"></jsp:include>
+	<style type="text/css">
+		#form th {
+			text-align: right
+		}
+	</style>
   </head>
   
   <body>
 	<div class="easyui-dialog" data-options ="title:'登录',closable:false,modal:true">
 		<form id="login_loginForm" method="post">
-			<table>
+			<table class="table">
 				<tr>
 					<th>登录名</th>
 					<td><input name="account" class="easyui-validatebox textbox" data-options="required:true,validType:'length[3,10]',missingMessage:'请输入账号'"/></td>
@@ -27,8 +32,8 @@
 				<tr>
 					<th></th>
 					<td>
-						<a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="javascript:void(0)" onclick="javascript:$('#login_loginForm').submit()" style="width:60px">登录</a>
-						<a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="javascript:alert('cancel')" style="width:60px">Cancel</a>
+						<a class="btn btn-success" onclick="load()" style="width:60px">登录</a>
+						<a class="btn btn-danger"  onclick="javascript:alert('cancel')" style="width:60px">取消</a>
 					</td>
 				</tr>
 			</table>
@@ -37,6 +42,12 @@
 </body>
 <script type="text/javascript">
 $(function() {
+	$("input").keydown(function(event) {
+		if (event.which == 13) {
+			load();
+		}
+	});
+	
 	$('#login_loginForm').form({
 		url : '${pageContext.request.contextPath}/systemAction!load.do',
 		success : function(data) {
@@ -66,5 +77,9 @@ $(function() {
 	    });
 	
 });
+
+function load(){
+	$('#login_loginForm').submit();
+}
 </script>
 </html>

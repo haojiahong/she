@@ -3,6 +3,6 @@
 <html>
 <head>
 </head>
-<body>${exception.message}
+<body>${exception}
 </body>
 </html>

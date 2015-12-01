@@ -9,7 +9,7 @@
 }
 
 .formWidth {
-	width: 160px
+	width: 120px
 }
 </style>
 </head>

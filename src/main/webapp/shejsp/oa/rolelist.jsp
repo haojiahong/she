@@ -5,6 +5,17 @@
     <jsp:include page="/shejsp/sys/inc.jsp"></jsp:include>
 </head>
 <body>
+<div class="easyui-layout" data-options="fit:true">
+<div data-options="region:'north',border:false" style="height:40px;padding:10px;overflow: hidden;">
+	<table class="com_search">
+		<tr>
+			<td>角色名称</td>
+			<td><input id="roleNameSch" name="roleNameSch" upload="true" class="textbox" /></td>
+			<td><a class="easyui-linkbutton " data-options="iconCls:'icon-search',plain:true" onclick="reload()" >查询</a></td>
+		</tr>
+	</table>
+</div>
+<div data-options="region:'center',border:false">
 	<table id="roleTable">
 		<thead>
 			<tr>
@@ -16,31 +27,16 @@
 			</tr>
 		</thead>
 	</table>
+</div>
 	<div id="roletoolbar">
-	<table>
-		<tr>
-			<td>
-				<table style="font-size: 13px;font-family: '微软雅黑';">
-					<tr>
-						<td>角色名称</td>
-						<td><input id="roleNameSch" name="roleNameSch" upload="true" class="textbox" /></td>
-						<td><a href="javascript:void(0)" class="easyui-linkbutton " data-options="iconCls:'icon-search',plain:true" onclick="reload()" >查询</a></td>
-					</tr>
-				</table>
-			</td>
-		</tr>
-		
-		<tr>
-			<table>
-				<tr>
-					<td><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="add()" >添加</a> </td>
-					<td><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="delUsers()">删除</a></td>
-				</tr>
-			</table>
-		</tr>
-	</table> 
+		<table>
+			<tr>
+				<td><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="add()" >添加</a> </td>
+				<td><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="delUsers()">删除</a></td>
+			</tr>
+		</table>
 	</div>
-
+</div>
 <script type="text/javascript">
 $(function(){
 	 rolelist_grid = $('#roleTable').datagrid({

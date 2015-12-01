@@ -15,10 +15,10 @@
   </head>
  <body class="easyui-layout">
 	<div data-options="region:'north',border:false" style="height:40px;background:#EEE;padding:10px;overflow: hidden;"  href="${pageContext.request.contextPath}/shejsp/sys/layout/north.jsp"></div>
-	<div data-options="region:'west',split:true,title:'主要菜单'" style="width:200px;">
+	<div data-options="region:'west',split:true,minWidth:'150',maxWidth:'150',title:'主要菜单'" style="width:200px;">
 			<div id="menuAccordion"></div>
 	</div> 
-	<div data-options="region:'south',border:false" style="height:25px;background:#EEE;padding:5px;" href="${pageContext.request.contextPath}/shejsp/sys/layout/south.jsp"></div>
+	<div data-options="region:'south',border:false" style="height:30px;background:#EEE;padding:5px;" href="${pageContext.request.contextPath}/shejsp/sys/layout/south.jsp"></div>
 	<div data-options="region:'center',plain:true,title:'欢迎使用'" style="overflow: hidden;"  href="${pageContext.request.contextPath}/shejsp/sys/layout/center.jsp"></div>
 </body>
 <script type="text/javascript">

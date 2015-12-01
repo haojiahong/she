@@ -7,7 +7,16 @@
 </head>
 <body>
 	<div class="easyui-layout" data-options="fit:true">
-		<div data-options="region:'center',border:true">
+		<div data-options="region:'north',border:false" style="height:40px;padding:10px;overflow: hidden;">
+			<table class="com_search">
+				<tr>
+					<td width="60" align="center">用户名称</td>
+					<td><input id="userNameSch" name="userNameSch" upload="true" class="textbox" /></td>
+					<td><a class="easyui-linkbutton " data-options="iconCls:'icon-search',plain:true" onclick="reload()" >查询</a></td>
+				</tr>
+			</table>
+		</div>
+		<div data-options="region:'center',border:false">
 			<table id="easyTable">
 				<thead>
 					<tr>
@@ -27,27 +36,12 @@
 		<div id="toolbar">
 			<table>
 				<tr>
-					<td>
-						<table style="font-size: 13px;font-family: '微软雅黑';">
-							<tr>
-								<td>用户名称</td>
-								<td><input id="userNameSch" name="userNameSch" upload="true" class="textbox" /></td>
-								<td><a href="javascript:void(0)" class="easyui-linkbutton " data-options="iconCls:'icon-search',plain:true" onclick="reload()" >查询</a></td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<table>
-						<tr>
-							<shiro:hasPermission name="userAdd">
-								<td><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="add()" >添加</a> </td>
-							</shiro:hasPermission>
-							<shiro:hasPermission name="userDel">
-								<td><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="delUser($('#easyTable').datagrid('getSelected').userId)">删除</a></td>
-							</shiro:hasPermission>
-						</tr>
-					</table>
+					<shiro:hasPermission name="userAdd">
+						<td><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="add()" >添加</a> </td>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="userDel">
+						<td><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="delUser($('#easyTable').datagrid('getSelected').userId)">删除</a></td>
+					</shiro:hasPermission>
 				</tr>
 			</table>
 		</div>
