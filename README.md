@@ -1,5 +1,5 @@
 # she
-对第一个OA项目JokerOne( https://github.com/haojiahong/JokerOne)的优化，主要加入了maven、权限框架shiro、以及对钱袋页面进行了优化，简单写了下redis模块。
+对第一个OA项目JokerOne( https://github.com/haojiahong/JokerOne )         的优化，主要加入了maven、权限框架shiro、以及对钱袋页面进行了优化，简单写了下redis模块。
 
 框架所需环境：JAVA环境：JDK6+；数据库环境：oracle10g+/mysql5+；WEB容器环境：tomcat6+；
 
